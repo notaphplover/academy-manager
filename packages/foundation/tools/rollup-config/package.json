@@ -1,0 +1,30 @@
+{
+  "author": "Roberto Pintos López",
+  "bugs": {
+    "url": "https://github.com/notaphplover/academy-manager/issues"
+  },
+  "description": "Rollup config for monorepo packages",
+  "dependencies": {
+    "@rollup/plugin-multi-entry": "6.0.1",
+    "@rollup/plugin-terser": "0.4.4",
+    "@rollup/plugin-typescript": "12.1.4",
+    "rollup-plugin-dts": "6.2.3",
+    "rollup": "4.52.2"
+  },
+  "devDependencies": {
+    "prettier": "3.6.2"
+  },
+  "exports": "./lib/index.js",
+  "homepage": "https://github.com/notaphplover/academy-manager#readme",
+  "license": "MIT",
+  "name": "@academyjs/foundation-rollup-config",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notaphplover/academy-manager.git"
+  },
+  "scripts": {
+    "format": "prettier --write ./lib"
+  },
+  "type": "module"
+}

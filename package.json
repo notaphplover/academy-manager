@@ -1,0 +1,52 @@
+{
+  "author": "Roberto Pintos López",
+  "bugs": {
+    "url": "https://github.com/notaphplover/academy-manager/issues"
+  },
+  "description": "Academy manager sample application on top of InversifyJS",
+  "devDependencies": {
+    "@changesets/cli": "2.29.7",
+    "@commitlint/cli": "19.8.1",
+    "@commitlint/config-conventional": "19.8.1",
+    "@commitlint/prompt-cli": "19.8.1",
+    "@academyjs/foundation-eslint-config": "workspace:*",
+    "@academyjs/foundation-prettier-config": "workspace:*",
+    "@academyjs/foundation-rollup-config": "workspace:*",
+    "@academyjs/foundation-scripts": "workspace:*",
+    "@academyjs/foundation-stryker-config": "workspace:*",
+    "@academyjs/foundation-typescript-config": "workspace:*",
+    "@academyjs/foundation-vitest-config": "workspace:*",
+    "husky": "9.1.7",
+    "knip": "5.64.0",
+    "lint-staged": "16.2.0",
+    "turbo": "2.5.6"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "name": "root",
+  "packageManager": "pnpm@10.17.1",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notaphplover/academy-manager.git"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "commit": "commit",
+    "format": "turbo run format",
+    "lint": "turbo run lint",
+    "prepare": "husky && turbo telemetry disable",
+    "prerelease": "pnpm run build",
+    "release": "changeset publish",
+    "test:integration": "turbo test:integration",
+    "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage",
+    "test:mutation": "turbo run test:mutation --concurrency=25%",
+    "test:uncommitted": "turbo run test:uncommitted --filter [HEAD]",
+    "test:unit": "turbo run test:unit",
+    "test:e2e": "turbo run test:e2e",
+    "test:e2e:cjs": "turbo run test:e2e:cjs",
+    "test:e2e:esm": "turbo run test:e2e:esm",
+    "unused": "knip"
+  }
+}

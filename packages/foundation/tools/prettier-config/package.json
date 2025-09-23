@@ -1,0 +1,22 @@
+{
+  "author": "Roberto Pintos López",
+  "name": "@academyjs/foundation-prettier-config",
+  "description": "Common prettier config for inversify monorepo packages",
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
+    }
+  },
+  "type": "module",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/notaphplover/academy-manager/issues"
+  },
+  "homepage": "https://github.com/notaphplover/academy-manager#readme",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notaphplover/academy-manager.git"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "author": "Roberto Pintos López",
+  "name": "@academyjs/foundation-typescript-config",
+  "description": "Common typescript config for inversify monorepo packages",
+  "devDependencies": {
+    "prettier": "3.6.2"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/notaphplover/academy-manager/issues"
+  },
+  "homepage": "https://github.com/notaphplover/academy-manager#readme",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notaphplover/academy-manager.git"
+  }
+}
