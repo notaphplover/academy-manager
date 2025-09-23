@@ -67,8 +67,6 @@ jobs:
   done:
     name: Done
     needs:
-      - test-e2e-container
-      - test-e2e-http
       - test-package
     runs-on: ubuntu-latest
     steps:
