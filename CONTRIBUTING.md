@@ -1,4 +1,4 @@
-# Contributing to Inversify monorepo
+# Contributing to the monorepo
 
 ## Guidelines
 

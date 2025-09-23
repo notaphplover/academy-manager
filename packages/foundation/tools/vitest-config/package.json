@@ -3,7 +3,7 @@
   "bugs": {
     "url": "https://github.com/notaphplover/academy-manager/issues"
   },
-  "description": "Common vitest config for inversify monorepo packages",
+  "description": "Common vitest config for monorepo packages",
   "dependencies": {
     "@swc/core": "^1.13.5",
     "unplugin-swc": "^1.5.7",

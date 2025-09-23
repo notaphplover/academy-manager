@@ -1,0 +1,40 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "automerge": false,
+  "constraints": {
+    "pnpm": "10"
+  },
+  "extends": [
+    ":dependencyDashboard",
+    ":disableRateLimiting",
+    ":semanticCommitScopeDisabled",
+    ":semanticPrefixFixDepsChoreOthers",
+    "group:monorepos",
+    "group:recommended",
+    "mergeConfidence:age-confidence-badges",
+    "replacements:all",
+    "workarounds:all"
+  ],
+  "ignoreDeps": [],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**",
+    "**/__tests__/**",
+    "**/test/**",
+    "**/tests/**",
+    "**/__fixtures__/**"
+  ],
+  "packageRules": [
+    {
+      "groupName": "auto merge on patch or minor",
+      "automerge": true,
+      "matchUpdateTypes": ["patch", "minor"],
+      "excludePackageNames": ["turbo", "typescript"]
+    }
+  ],
+  "rangeStrategy": "bump",
+  "rebaseWhen": "conflicted",
+  "semanticCommits": "enabled",
+  "schedule": ["at any time"]
+}

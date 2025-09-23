@@ -3,7 +3,7 @@
   "bugs": {
     "url": "https://github.com/notaphplover/academy-manager/issues"
   },
-  "description": "Common ESLint config for inversify monorepo packages",
+  "description": "Common ESLint config for monorepo packages",
   "devDependencies": {
     "@vitest/eslint-plugin": "1.3.12",
     "eslint-config-prettier": "10.1.8",

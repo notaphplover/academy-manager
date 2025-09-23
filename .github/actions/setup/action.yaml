@@ -1,0 +1,43 @@
+name: Setup action
+description: Reusable action to setup node and install packages
+
+runs:
+  using: "composite"
+  steps:
+
+    - name: Install Node.js
+      uses: actions/setup-node@v5
+      with:
+        node-version: 22.19.0
+        package-manager-cache: false
+
+    - uses: pnpm/action-setup@v4
+      name: Install pnpm
+      with:
+        run_install: false
+
+    - name: Get pnpm store directory
+      id: pnpm-cache
+      run: |
+        echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+      shell: bash
+
+    - uses: actions/cache@v4
+      name: Setup pnpm cache
+      with:
+        path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+        key: pnpm-store-${{ hashFiles('**/package.json') }}
+        restore-keys: |
+          pnpm-store-
+
+    - name: Install dependencies
+      run: pnpm install
+      shell: bash
+
+    - name: Cache turbo
+      uses: actions/cache@v4
+      with:
+        path: .turbo
+        key: ${{ runner.os }}-turbo-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-turbo-
