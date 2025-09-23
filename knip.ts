@@ -35,6 +35,7 @@ export default {
       ignoreDependencies: defaultWorkspaceProjectConfig.ignoreDependencies,
       project: [],
     },
+    "packages/backend/auth/*": defaultWorkspaceProjectConfig,
     "packages/foundation/tools/*": defaultWorkspaceProjectConfig,
     "packages/foundation/tools/prettier-config": {
       entry: ["{cjs,esm}/index.{js,d.ts}"],
