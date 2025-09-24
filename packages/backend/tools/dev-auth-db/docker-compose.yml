@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:17.6-alpine
+    environment:
+      - POSTGRES_USER=postgres_user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=auth_service_db
+    networks:
+      - academy_manager
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+
+networks:
+  academy_manager:
+    external: true
+    name: academy_manager_network
+
+volumes:
+  db:
+    driver: local
