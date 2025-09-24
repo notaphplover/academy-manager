@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker network inspect academy_manager_network >/dev/null 2>&1 || \
+    docker network create --driver bridge academy_manager_network
