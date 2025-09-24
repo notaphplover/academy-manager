@@ -1,6 +1,6 @@
-[![Test coverage](https://codecov.io/gh//notaphplover/academy-manager/branch/main/graph/badge.svg?flag=%40inversifyjs%2Fhttp-core)](https://codecov.io/gh//notaphplover/academy-manager/branch/main/graph/badge.svg?flag=%40inversifyjs%2Fhttp-core)
-[![npm version](https://img.shields.io/github/package-json/v//notaphplover/academy-manager?filename=packages%2Fframework%2Flibraries%2Fcore%2Fpackage.json&style=plastic)](https://www.npmjs.com/package/@academyjs/http-core)
+[![Test coverage](https://codecov.io/gh//notaphplover/academy-manager/branch/main/graph/badge.svg?flag=%40academyjs%2Fauth-better-auth)](https://codecov.io/gh//notaphplover/academy-manager/branch/main/graph/badge.svg?flag=%40academyjs%2Fauth-better-auth)
+[![npm version](https://img.shields.io/github/package-json/v//notaphplover/academy-manager?filename=packages%2Fbackend%2Fauth%2Fbetter-auth-adapter%2Fpackage.json&style=plastic)](https://www.npmjs.com/package/@academyjs/auth-better-auth)
 
-# @academyjs/http-core
+# @academyjs/auth-better-auth
 
-Inversify monorepo http core modules.
+Inversify monorepo auth Better Auth package.
