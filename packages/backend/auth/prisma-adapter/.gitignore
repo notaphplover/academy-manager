@@ -17,3 +17,6 @@
 # Turborepo files
 .turbo/
 
+/.env
+
+/generated
