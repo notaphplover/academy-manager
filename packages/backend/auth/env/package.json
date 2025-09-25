@@ -6,7 +6,8 @@
   "description": "Backend auth env package",
   "dependencies": {
     "@academyjs/backend-env": "workspace:*",
-    "envalid": "^8.1.0"
+    "envalid": "^8.1.0",
+    "inversify": "^7.10.0"
   },
   "devDependencies": {
     "@stryker-mutator/core": "9.1.1",
