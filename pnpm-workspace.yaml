@@ -1,4 +1,5 @@
 packages:
+  - packages/backend/apps/mail/*
   - packages/backend/auth/*
   - packages/backend/libraries/*
   - packages/backend/tools/*
