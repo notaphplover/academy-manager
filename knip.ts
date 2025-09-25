@@ -36,6 +36,7 @@ export default {
       project: [],
     },
     "packages/backend/auth/*": defaultWorkspaceProjectConfig,
+    "packages/backend/libraries/*": defaultWorkspaceProjectConfig,
     "packages/foundation/tools/*": defaultWorkspaceProjectConfig,
     "packages/foundation/tools/prettier-config": {
       entry: ["{cjs,esm}/index.{js,d.ts}"],
