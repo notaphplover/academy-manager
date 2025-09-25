@@ -5,7 +5,7 @@
   },
   "description": "Backend env library",
   "dependencies": {
-    "dotenv": "^16.4.7"
+    "dotenv": "^17.2.2"
   },
   "devDependencies": {
     "@stryker-mutator/core": "9.1.1",
