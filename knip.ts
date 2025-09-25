@@ -33,9 +33,16 @@ export default {
     ".": {
       entry: [],
       ignoreDependencies: defaultWorkspaceProjectConfig.ignoreDependencies,
+      ignoreBinaries: ["trap"],
       project: [],
     },
     "packages/backend/auth/*": defaultWorkspaceProjectConfig,
+    "packages/backend/auth/prisma-adapter": {
+      ...defaultWorkspaceProjectConfig,
+      prisma: {
+        config: ["prisma.config.mjs"],
+      },
+    },
     "packages/backend/libraries/*": defaultWorkspaceProjectConfig,
     "packages/foundation/tools/*": defaultWorkspaceProjectConfig,
     "packages/foundation/tools/prettier-config": {
