@@ -1,7 +1,7 @@
 {
   "author": "Roberto Pintos López",
   "bugs": {
-    "url": "https://github.com//notaphplover/academy-manager/issues"
+    "url": "https://github.com/notaphplover/academy-manager/issues"
   },
   "description": "Auth prisma adapter",
   "dependencies": {
@@ -37,7 +37,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com//notaphplover/academy-manager.git"
+    "url": "git+https://github.com/notaphplover/academy-manager.git"
   },
   "scripts": {
     "build": "prisma generate && pnpm run build:cjs",
