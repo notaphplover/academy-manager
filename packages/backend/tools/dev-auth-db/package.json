@@ -17,7 +17,7 @@
   },
   "scripts": {
     "close:e2e": "docker compose down",
-    "format": "prettier --write ./src",
+    "format": "prettier --write ./docker-compose.yml",
     "postserve": "docker compose down",
     "serve": "docker compose up",
     "start:e2e": "docker compose up -d"
