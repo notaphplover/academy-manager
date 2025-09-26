@@ -1,6 +1,6 @@
 packages:
+  - packages/backend/apps/auth/*
   - packages/backend/apps/mail/*
-  - packages/backend/auth/*
   - packages/backend/libraries/*
   - packages/backend/tools/*
   - packages/foundation/tools/*

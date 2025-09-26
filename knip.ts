@@ -36,16 +36,15 @@ export default {
       ignoreBinaries: ["trap"],
       project: [],
     },
-    "packages/backend/apps/mail/*": defaultWorkspaceProjectConfig,
-    "packages/backend/auth/*": defaultWorkspaceProjectConfig,
-    "packages/backend/auth/better-auth-adapter": {
+    "packages/backend/apps/auth/*": defaultWorkspaceProjectConfig,
+    "packages/backend/apps/auth/better-auth-adapter": {
       ...defaultWorkspaceProjectConfig,
       ignoreDependencies: [
         ...defaultWorkspaceProjectConfig.ignoreDependencies,
         "@better-auth/cli",
       ],
     },
-    "packages/backend/auth/prisma-adapter": {
+    "packages/backend/apps/auth/prisma-adapter": {
       ...defaultWorkspaceProjectConfig,
       ignoreDependencies: [
         ...defaultWorkspaceProjectConfig.ignoreDependencies,
@@ -55,6 +54,7 @@ export default {
         config: ["prisma.config.mjs"],
       },
     },
+    "packages/backend/apps/mail/*": defaultWorkspaceProjectConfig,
     "packages/backend/libraries/*": defaultWorkspaceProjectConfig,
     "packages/foundation/tools/*": defaultWorkspaceProjectConfig,
     "packages/foundation/tools/prettier-config": {
