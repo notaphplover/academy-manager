@@ -28,7 +28,6 @@ export class EnvironmentLoader extends EnvLoader<Environment> {
       ACADEMY_JS_AUTH_SERVICE_API_KEY: str(),
       ACADEMY_JS_AUTH_SERVICE_CORS_ORIGINS: json(),
       ACADEMY_JS_AUTH_SERVICE_DATABASE_CONNECTION_STRING: url(),
-      ACADEMY_JS_AUTH_SERVICE_FRONTEND_BASE_URL: url(),
       ACADEMY_JS_AUTH_SERVICE_HOST: host(),
       ACADEMY_JS_AUTH_SERVICE_MAIL_DEFAULT_ADDRESS: email(),
       ACADEMY_JS_AUTH_SERVICE_MAIL_HOST: host(),
@@ -44,7 +43,6 @@ export class EnvironmentLoader extends EnvLoader<Environment> {
       corsOrigins: rawEnvironment.ACADEMY_JS_AUTH_SERVICE_CORS_ORIGINS,
       databaseConnectionString:
         rawEnvironment.ACADEMY_JS_AUTH_SERVICE_DATABASE_CONNECTION_STRING,
-      frontendBaseUrl: rawEnvironment.ACADEMY_JS_AUTH_SERVICE_FRONTEND_BASE_URL,
       host: rawEnvironment.ACADEMY_JS_AUTH_SERVICE_HOST,
       mailConfig: {
         authPassword: rawEnvironment.ACADEMY_JS_AUTH_SERVICE_MAIL_PASSWORD,
