@@ -1,0 +1,9 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("ACADEMY_JS_AUTH_SERVICE_DATABASE_CONNECTION_STRING")
+}
