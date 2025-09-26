@@ -5,7 +5,7 @@
   },
   "description": "Better Auth adapter",
   "dependencies": {
-    "better-auth": "^1.3.17"
+    "better-auth": "^1.3.18"
   },
   "devDependencies": {
     "eslint": "9.36.0",
