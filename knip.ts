@@ -36,6 +36,7 @@ export default {
       ignoreBinaries: ["trap"],
       project: [],
     },
+    "packages/backend/apps/mail/*": defaultWorkspaceProjectConfig,
     "packages/backend/auth/*": defaultWorkspaceProjectConfig,
     "packages/backend/auth/prisma-adapter": {
       ...defaultWorkspaceProjectConfig,

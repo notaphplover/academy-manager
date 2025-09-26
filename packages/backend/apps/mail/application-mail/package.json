@@ -4,9 +4,6 @@
     "url": "https://github.com/notaphplover/academy-manager/issues"
   },
   "description": "Backend application mail package",
-  "dependencies": {
-    
-  },
   "devDependencies": {
     "@stryker-mutator/core": "9.1.1",
     "@stryker-mutator/typescript-checker": "9.1.1",
