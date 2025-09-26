@@ -38,8 +38,19 @@ export default {
     },
     "packages/backend/apps/mail/*": defaultWorkspaceProjectConfig,
     "packages/backend/auth/*": defaultWorkspaceProjectConfig,
+    "packages/backend/auth/better-auth-adapter": {
+      ...defaultWorkspaceProjectConfig,
+      ignoreDependencies: [
+        ...defaultWorkspaceProjectConfig.ignoreDependencies,
+        "@better-auth/cli",
+      ],
+    },
     "packages/backend/auth/prisma-adapter": {
       ...defaultWorkspaceProjectConfig,
+      ignoreDependencies: [
+        ...defaultWorkspaceProjectConfig.ignoreDependencies,
+        "@prisma/client",
+      ],
       prisma: {
         config: ["prisma.config.mjs"],
       },

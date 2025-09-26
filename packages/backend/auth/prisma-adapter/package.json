@@ -4,6 +4,9 @@
     "url": "https://github.com/notaphplover/academy-manager/issues"
   },
   "description": "Auth prisma adapter",
+  "dependencies": {
+    "@prisma/client": "6.16.2"
+  },
   "devDependencies": {
     "@stryker-mutator/core": "9.1.1",
     "@stryker-mutator/typescript-checker": "9.1.1",
@@ -50,8 +53,5 @@
     "test:uncommitted": "pnpm run test --changed=HEAD",
     "test:unit": "pnpm run test --project Unit"
   },
-  "version": "0.1.0",
-  "dependencies": {
-    "@prisma/client": "6.16.2"
-  }
+  "version": "0.1.0"
 }
