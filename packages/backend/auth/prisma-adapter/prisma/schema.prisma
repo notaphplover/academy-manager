@@ -8,5 +8,5 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("ACADEMY_JS_AUTH_SERVICE_DATABASE_CONNECTION_STRING")
 }

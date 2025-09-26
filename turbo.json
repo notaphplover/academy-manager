@@ -6,6 +6,11 @@
       "inputs": ["src/**/*.{cts,mts,ts}"],
       "outputs": ["dist/**", "lib/**"]
     },
+    "@academyjs/auth-prisma#build": {
+      "dependsOn": ["^build"],
+      "inputs": ["src/**/*.{cts,mts,ts}"],
+      "outputs": ["generated/**", "lib/**"]
+    },
     "format": {
       "inputs": ["src/**/*.{cts,mts,ts}"],
       "outputs": ["src/**/*.{cts,mts,ts}"]
