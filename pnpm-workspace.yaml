@@ -7,8 +7,11 @@ packages:
 
 ignoredBuiltDependencies:
   - better-sqlite3
+  - oxc-resolver
 
 onlyBuiltDependencies:
   - '@prisma/client'
   - '@prisma/engines'
+  - '@swc/core'
+  - esbuild
   - prisma
