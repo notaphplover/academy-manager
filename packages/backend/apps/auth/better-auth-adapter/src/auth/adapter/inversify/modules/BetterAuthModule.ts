@@ -23,8 +23,10 @@ export class BetterAuthModule extends ContainerModule {
       containerModuleLoadOptions
         .bind(betterAuthServiceIdentifier)
         .toResolvedValue(
-          (options: AppBetterAuthOptions): BetterAuth<AppBetterAuthOptions> =>
-            betterAuth(options),
+          (
+            betterAuthOptionsFromEnvBuilder: BetterAuthOptionsFromEnvBuilder,
+          ): BetterAuth<AppBetterAuthOptions> =>
+            betterAuth(betterAuthOptionsFromEnvBuilder.build()),
           [BetterAuthOptionsFromEnvBuilder],
         );
     });

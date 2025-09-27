@@ -6,8 +6,6 @@ packages:
   - packages/foundation/tools/*
 
 ignoredBuiltDependencies:
-  - better-sqlite3
-  - oxc-resolver
 
 onlyBuiltDependencies:
   - '@prisma/client'

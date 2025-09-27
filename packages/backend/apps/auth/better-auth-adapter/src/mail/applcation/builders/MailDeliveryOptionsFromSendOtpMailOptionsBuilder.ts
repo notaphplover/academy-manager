@@ -58,11 +58,11 @@ export class MailDeliveryOptionsFromSendOtpMailOptionsBuilder
   #buildRequestInfoText(options: SendOtpMailOptions): string {
     switch (options.type) {
       case 'sign-in':
-        return 'A sign-in request has been received.';
+        return 'A sign-in request has been received';
       case 'email-verification':
-        return 'An email verification has been requested.';
+        return 'An email verification has been requested';
       case 'forget-password':
-        return 'A password reset has been requested.';
+        return 'A password reset has been requested';
     }
   }
 }
