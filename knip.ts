@@ -37,8 +37,12 @@ export default {
       project: [],
     },
     "packages/backend/apps/auth/*": defaultWorkspaceProjectConfig,
-    "packages/backend/apps/auth/better-auth-adapter": {
+    "packages/backend/apps/auth/http-service": {
       ...defaultWorkspaceProjectConfig,
+      entry: [
+        ...defaultWorkspaceProjectConfig.entry,
+        "src/app/scripts/generateBetterAuthSchema.mts",
+      ],
       ignoreDependencies: [
         ...defaultWorkspaceProjectConfig.ignoreDependencies,
         "@better-auth/cli",
