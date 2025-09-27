@@ -3,13 +3,13 @@
   "bugs": {
     "url": "https://github.com/notaphplover/academy-manager/issues"
   },
-  "description": "Dev db for auth service",
+  "description": "Dev mail server for auth service",
   "devDependencies": {
     "prettier": "3.6.2"
   },
   "homepage": "https://github.com/notaphplover/academy-manager#readme",
   "license": "See license in \"LICENSE\" file",
-  "name": "@academyjs/dev-auth-db",
+  "name": "@academyjs/dev-auth-maildev",
   "private": true,
   "repository": {
     "type": "git",

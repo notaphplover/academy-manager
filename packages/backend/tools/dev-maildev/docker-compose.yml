@@ -1,0 +1,15 @@
+services:
+  maildev:
+    build:
+      context: .
+      dockerfile: docker/maildev.Dockerfile
+    networks:
+      - academy_manager
+    ports:
+      - 1080:1080
+      - 1025:1025
+
+networks:
+  academy_manager:
+    external: true
+    name: academy_manager_network
