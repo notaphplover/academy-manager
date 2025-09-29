@@ -36,6 +36,7 @@ export class EnvironmentLoader extends EnvLoader<Environment> {
       ACADEMY_JS_AUTH_SERVICE_MAIL_USE_TLS: bool(),
       ACADEMY_JS_AUTH_SERVICE_MAIL_USER: str(),
       ACADEMY_JS_AUTH_SERVICE_PORT: port(),
+      ACADEMY_JS_AUTH_SERVICE_SUPER_ADMIN_LIST: json(),
     });
 
     return {
@@ -54,6 +55,7 @@ export class EnvironmentLoader extends EnvLoader<Environment> {
         useTls: rawEnvironment.ACADEMY_JS_AUTH_SERVICE_MAIL_USE_TLS,
       },
       port: rawEnvironment.ACADEMY_JS_AUTH_SERVICE_PORT,
+      superAdminList: rawEnvironment.ACADEMY_JS_AUTH_SERVICE_SUPER_ADMIN_LIST,
     };
   }
 

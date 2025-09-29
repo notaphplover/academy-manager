@@ -1,4 +1,5 @@
 import { MailConfig } from './MailConfig';
+import { SuperAdminUser } from './SuperAdminUser';
 
 export interface Environment {
   apiKey: string;
@@ -7,4 +8,5 @@ export interface Environment {
   host: string;
   mailConfig: MailConfig;
   port: number;
+  superAdminList: SuperAdminUser[];
 }

@@ -1,3 +1,5 @@
+import { SuperAdminUser } from './SuperAdminUser';
+
 export interface EnvironmentRaw extends Record<string, unknown> {
   ACADEMY_JS_AUTH_SERVICE_API_KEY: string;
   ACADEMY_JS_AUTH_SERVICE_CORS_ORIGINS: string[];
@@ -10,4 +12,5 @@ export interface EnvironmentRaw extends Record<string, unknown> {
   ACADEMY_JS_AUTH_SERVICE_MAIL_USE_TLS: boolean;
   ACADEMY_JS_AUTH_SERVICE_MAIL_USER: string;
   ACADEMY_JS_AUTH_SERVICE_PORT: number;
+  ACADEMY_JS_AUTH_SERVICE_SUPER_ADMIN_LIST: SuperAdminUser[];
 }
