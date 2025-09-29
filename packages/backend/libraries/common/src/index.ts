@@ -1,5 +1,6 @@
 import { Writable } from './common/application/models/Writable';
 import { Handler } from './common/application/modules/Handler';
+import { Wrapper } from './common/domain/models/Wrapper';
 import { Builder } from './common/domain/modules/Builder';
 import { BuilderAsync } from './common/domain/modules/BuilderAsync';
 import { ReportBasedSpec } from './common/domain/modules/ReportBasedSpec';
@@ -25,5 +26,6 @@ export type {
   ReportBasedSpec,
   Right,
   Spec,
+  Wrapper,
   Writable,
 };
