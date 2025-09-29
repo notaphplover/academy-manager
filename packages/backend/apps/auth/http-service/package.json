@@ -9,7 +9,7 @@
     "@academyjs/auth-better-auth": "workspace:*",
     "@academyjs/backend-auth-env": "workspace:*",
     "@academyjs/mail-nodemailer": "workspace:*",
-    "@hono/node-server": "1.19.4",
+    "@hono/node-server": "1.19.5",
     "@inversifyjs/http-better-auth": "3.0.0",
     "@inversifyjs/http-hono": "3.0.0",
     "@inversifyjs/logger": "^1.1.0",
