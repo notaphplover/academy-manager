@@ -8,7 +8,7 @@
     },
     "@academyjs/auth-prisma#build": {
       "dependsOn": ["^build"],
-      "inputs": ["src/**/*.{cts,mts,ts}"],
+      "inputs": ["prisma/schema.prisma", "src/**/*.{cts,mts,ts}"],
       "outputs": ["generated/**", "lib/**"]
     },
     "format": {
