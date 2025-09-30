@@ -5,6 +5,7 @@
   },
   "description": "Backend application auth package",
   "devDependencies": {
+    "@academyjs/backend-auth-domain": "workspace:*",
     "@academyjs/backend-auth-env": "workspace:*",
     "@stryker-mutator/core": "9.1.1",
     "@stryker-mutator/typescript-checker": "9.1.1",
