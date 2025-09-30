@@ -2,6 +2,7 @@ import {
   MailDeliveryOptions,
   MailDeliveryOutputPort,
 } from '@academyjs/backend-application-mail';
+import { retry, RetryOptionsStrategyKind } from '@academyjs/backend-common';
 import { inject, injectable } from 'inversify';
 import nodemailer from 'nodemailer';
 
@@ -22,7 +23,17 @@ export class MailDeliveryNodeMailerAdapter implements MailDeliveryOutputPort {
     const mailOptions: nodemailer.SendMailOptions =
       this.#buildMailOptions(deliveryOptions);
 
-    await this.#transporter.sendMail(mailOptions);
+    await retry({
+      operation: async () => {
+        await this.#transporter.sendMail(mailOptions);
+      },
+      strategy: {
+        factor: 2,
+        initialDelayMs: 1000,
+        kind: RetryOptionsStrategyKind.exponential,
+        maxAttempts: 5,
+      },
+    });
   }
 
   #buildMailOptions(

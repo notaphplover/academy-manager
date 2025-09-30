@@ -5,6 +5,7 @@
   },
   "description": "Backend nodemailer adapter mail package",
   "dependencies": {
+    "@academyjs/backend-common": "workspace:*",
     "@academyjs/backend-application-mail": "workspace:*",
     "inversify": "^7.10.1",
     "nodemailer": "^7.0.6"

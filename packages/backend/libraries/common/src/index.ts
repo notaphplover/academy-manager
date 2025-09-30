@@ -13,17 +13,27 @@ import {
 } from './common/domain/patterns/fp/Either';
 import { AppError } from './error/application/models/AppError';
 import { AppErrorKind } from './error/application/models/AppErrorKind';
+import { retry } from './retry/actions/retry';
+import { ConstantRetryOptionsStrategy } from './retry/models/ConstantRetryOptionsStrategy';
+import { ExponentialRetryOptionsStrategy } from './retry/models/ExponentialRetryOptionsStrategy';
+import { RetryOptions } from './retry/models/RetryOptions';
+import { RetryOptionsStrategy } from './retry/models/RetryOptionsStrategy';
+import { RetryOptionsStrategyKind } from './retry/models/RetryOptionsStrategyKind';
 
-export { AppError, AppErrorKind };
+export { AppError, AppErrorKind, retry, RetryOptionsStrategyKind };
 
 export type {
   BaseEither,
   Builder,
   BuilderAsync,
+  ConstantRetryOptionsStrategy,
   Either,
+  ExponentialRetryOptionsStrategy,
   Handler,
   Left,
   ReportBasedSpec,
+  RetryOptions,
+  RetryOptionsStrategy,
   Right,
   Spec,
   Wrapper,

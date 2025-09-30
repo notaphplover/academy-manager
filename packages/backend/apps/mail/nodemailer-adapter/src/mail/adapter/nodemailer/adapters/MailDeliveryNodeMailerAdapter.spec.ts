@@ -8,7 +8,14 @@ import {
   vitest,
 } from 'vitest';
 
+vitest.mock('@academyjs/backend-common');
+
 import { MailDeliveryOptions } from '@academyjs/backend-application-mail';
+import {
+  retry,
+  RetryOptions,
+  RetryOptionsStrategyKind,
+} from '@academyjs/backend-common';
 import nodemailer from 'nodemailer';
 
 import { MailDeliveryNodeMailerAdapter } from './MailDeliveryNodeMailerAdapter';
@@ -26,6 +33,12 @@ describe(MailDeliveryNodeMailerAdapter, () => {
     } as Partial<
       Mocked<nodemailer.Transporter<nodemailer.SentMessageInfo>>
     > as Mocked<nodemailer.Transporter<nodemailer.SentMessageInfo>>;
+
+    vitest
+      .mocked(retry)
+      .mockImplementation(async ({ operation }: RetryOptions<unknown>) =>
+        operation(),
+      );
 
     mailDeliveryNodeMailerAdapter = new MailDeliveryNodeMailerAdapter(
       transporterMock,
@@ -58,6 +71,21 @@ describe(MailDeliveryNodeMailerAdapter, () => {
 
       afterAll(() => {
         vitest.clearAllMocks();
+      });
+
+      it('should call retry()', () => {
+        const expectedRetryOptions: RetryOptions<void> = {
+          operation: expect.any(Function),
+          strategy: {
+            factor: 2,
+            initialDelayMs: 1000,
+            kind: RetryOptionsStrategyKind.exponential,
+            maxAttempts: 5,
+          },
+        };
+
+        expect(retry).toHaveBeenCalledTimes(1);
+        expect(retry).toHaveBeenCalledWith(expectedRetryOptions);
       });
 
       it('should call transporter.sendMail()', () => {
