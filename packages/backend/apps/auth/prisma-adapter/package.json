@@ -5,9 +5,12 @@
   },
   "description": "Auth prisma adapter",
   "dependencies": {
+    "@academyjs/backend-common": "workspace:^",
+    "@academyjs/backend-db": "workspace:^",
     "@prisma/client": "6.16.2"
   },
   "devDependencies": {
+    "@academyjs/backend-auth-domain": "workspace:^",
     "@stryker-mutator/core": "9.1.1",
     "@stryker-mutator/typescript-checker": "9.1.1",
     "@stryker-mutator/vitest-runner": "9.1.1",
@@ -21,6 +24,9 @@
     "tslib": "2.8.1",
     "typescript": "5.9.2",
     "vitest": "3.2.4"
+  },
+  "peerDependencies": {
+    "inversify": "^7.10.1"
   },
   "devEngines": {
     "node": "^22.10.2",
