@@ -1,3 +1,3 @@
 import { buildDefaultConfig } from '@academyjs/foundation-eslint-config';
 
-export default [...buildDefaultConfig()];
+export default [...buildDefaultConfig(['generated/'])];
