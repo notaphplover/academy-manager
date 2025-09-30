@@ -8,6 +8,7 @@ import {
   PopulateUsersOutputPort,
   PopulateUsersOutputPortUser,
 } from '@academyjs/backend-auth-application';
+import { ConsoleLogger, Logger } from '@inversifyjs/logger';
 import { inject, injectable } from 'inversify';
 
 import { MailDeliveryOptionsFromSendUserCreatedMailOptionsBuilder } from '../../../../mail/applcation/builders/MailDeliveryOptionsFromSendUserCreatedMailOptionsBuilder';
@@ -22,6 +23,7 @@ const PASSWORD_CHARACTERS: string =
 @injectable()
 export class PopulateUsersBetterAuthAdapter implements PopulateUsersOutputPort {
   readonly #betterAuth: BetterAuth<AppBetterAuthOptions>;
+  readonly #logger: Logger;
   readonly #mailDeliveryOptionsFromSendUserCreatedMailOptionsBuilder: MailDeliveryOptionsFromSendUserCreatedMailOptionsBuilder;
   readonly #mailDeliveryOutputPort: MailDeliveryOutputPort;
 
@@ -34,6 +36,7 @@ export class PopulateUsersBetterAuthAdapter implements PopulateUsersOutputPort {
     mailDeliveryOutputPort: MailDeliveryOutputPort,
   ) {
     this.#betterAuth = betterAuth;
+    this.#logger = new ConsoleLogger('PopulateUsersBetterAuthAdapter');
     this.#mailDeliveryOptionsFromSendUserCreatedMailOptionsBuilder =
       mailDeliveryOptionsFromSendUserCreatedMailOptionsBuilder;
     this.#mailDeliveryOutputPort = mailDeliveryOutputPort;
@@ -44,23 +47,31 @@ export class PopulateUsersBetterAuthAdapter implements PopulateUsersOutputPort {
   ): Promise<void> {
     await Promise.all(
       users.map(async (user: PopulateUsersOutputPortUser) => {
-        const password: string = this.#generatePassword();
+        try {
+          const password: string = this.#generatePassword();
 
-        await this.#betterAuth.api.signUpEmail({
-          body: {
-            email: user.email,
-            name: user.name,
-            password,
-          },
-        });
+          await this.#betterAuth.api.signUpEmail({
+            body: {
+              email: user.email,
+              name: user.name,
+              password,
+            },
+          });
 
-        await this.#mailDeliveryOutputPort.send(
-          this.#mailDeliveryOptionsFromSendUserCreatedMailOptionsBuilder.build({
-            email: user.email,
-            name: user.name,
-            password,
-          }),
-        );
+          await this.#mailDeliveryOutputPort.send(
+            this.#mailDeliveryOptionsFromSendUserCreatedMailOptionsBuilder.build(
+              {
+                email: user.email,
+                name: user.name,
+                password,
+              },
+            ),
+          );
+        } catch (error: unknown) {
+          this.#logger.warn(
+            `Skipping user population for "${user.email}". An error occurred: \n\n${JSON.stringify(error, Object.getOwnPropertyNames(error))}`,
+          );
+        }
       }),
     );
   }

@@ -10,6 +10,7 @@
     "@academyjs/backend-application-mail": "workspace:*",
     "@academyjs/backend-auth-env": "workspace:*",
     "@academyjs/backend-common": "workspace:*",
+    "@inversifyjs/logger": "^1.1.0",
     "inversify": "^7.10.1"
   },
   "devDependencies": {

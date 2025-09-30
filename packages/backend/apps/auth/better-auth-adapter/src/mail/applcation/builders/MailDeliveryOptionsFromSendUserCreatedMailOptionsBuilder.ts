@@ -5,7 +5,7 @@ import { inject, injectable } from 'inversify';
 
 import { SendUserCreatedMailOptions } from '../models/SendUserCreatedMailOptions';
 
-const USER_ACTIVATION_SUBJECT: string = 'Reset password request';
+const SUBJECT: string = 'User Account Created';
 
 @injectable()
 export class MailDeliveryOptionsFromSendUserCreatedMailOptionsBuilder
@@ -26,7 +26,7 @@ export class MailDeliveryOptionsFromSendUserCreatedMailOptionsBuilder
     return {
       from: this.#sourceMailAddress,
       html: this.#buildHtmlMessage(options),
-      subject: USER_ACTIVATION_SUBJECT,
+      subject: SUBJECT,
       to: [options.email],
     };
   }
@@ -37,7 +37,7 @@ export class MailDeliveryOptionsFromSendUserCreatedMailOptionsBuilder
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=">
-    <title>${USER_ACTIVATION_SUBJECT}</title>
+    <title>${SUBJECT}</title>
   </head>
   <body style="font-size: 16px; font-weight: 400; letter-spacing: 0em; margin: 0; padding-bottom: 40px; padding-right: 40px; text-align: left;">
     <table style="border:0;width:100%">
