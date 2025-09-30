@@ -10,6 +10,7 @@
     "@prisma/client": "6.16.2"
   },
   "devDependencies": {
+    "@academyjs/backend-auth-application": "workspace:^",
     "@academyjs/backend-auth-domain": "workspace:^",
     "@stryker-mutator/core": "9.1.1",
     "@stryker-mutator/typescript-checker": "9.1.1",
