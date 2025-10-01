@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "extends": "@academyjs/foundation-typescript-config/tsconfig.base.esm.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "tsBuildInfoFile": "tsconfig.esm.tsbuildinfo"
+  },
+  "include": ["src"]
+}
