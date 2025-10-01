@@ -53,6 +53,7 @@
     "build:clean": "rimraf lib",
     "db:migrations:generate": "prisma migrate dev",
     "db:migrations:resolve": "prisma migrate resolve",
+    "db:migrations:reset": "prisma migrate reset",
     "db:migrations:status": "prisma migrate status",
     "format": "prettier --write ./src",
     "lint": "eslint ./src",

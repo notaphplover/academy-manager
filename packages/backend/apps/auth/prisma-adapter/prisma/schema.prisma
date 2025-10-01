@@ -14,20 +14,23 @@ datasource db {
 // Start Better auth models
 
 model User {
-  id                   String       @id
-  name                 String
-  email                String
-  emailVerified        Boolean      @default(false)
-  image                String?
-  createdAt            DateTime     @default(now())
-  updatedAt            DateTime     @default(now()) @updatedAt
-  twoFactorEnabled     Boolean?     @default(false)
-  sessions             Session[]
-  accounts             Account[]
-  members              Member[]
-  invitations          Invitation[]
-  superAdminMembership SuperAdminMembership? // Not part of the Better auth models
-  twofactors           TwoFactor[]
+  id               String       @id
+  name             String
+  email            String
+  emailVerified    Boolean      @default(false)
+  image            String?
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @default(now()) @updatedAt
+  role             String?
+  banned           Boolean?     @default(false)
+  banReason        String?
+  banExpires       DateTime?
+  twoFactorEnabled Boolean?     @default(false)
+  sessions         Session[]
+  accounts         Account[]
+  members          Member[]
+  invitations      Invitation[]
+  twofactors       TwoFactor[]
 
   @@unique([email])
   @@map("user")
@@ -43,6 +46,7 @@ model Session {
   userAgent            String?
   userId               String
   user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  impersonatedBy       String?
   activeOrganizationId String?
 
   @@unique([token])
@@ -130,12 +134,3 @@ model TwoFactor {
 }
 
 // End Better auth models
-
-model SuperAdminMembership {
-  id          String   @id
-  userId      String   @unique
-  user        User     @relation(fields: [userId], references: [id], onDelete: NoAction)
-  createdAt   DateTime @default(now())
-
-  @@map("superAdminMembership")
-}

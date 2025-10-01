@@ -1,27 +1,22 @@
-import { findManySuperAdminMembershipOutputPortSymbol } from '@academyjs/backend-auth-application';
+import { findManyUsersOutputPortSymbol } from '@academyjs/backend-auth-application';
 import { ContainerModule, ContainerModuleLoadOptions } from 'inversify';
 
-import { SuperAdminMembershipFromSuperAdminMembershipPrismaBuilder } from '../../../../superAdmin/adapter/prisma/builders/SuperAdminMembershipFromSuperAdminMembershipPrismaBuilder';
-import { SuperAdminMembershipPrismaFindManyArgsFromSuperAdminMembershipFindQueryBuilder } from '../../../../superAdmin/adapter/prisma/builders/SuperAdminMembershipPrismaFindManyArgsFromSuperAdminMembershipFindQueryBuilder';
-import { SuperAdminMembershipFindPrismaService } from '../../../../superAdmin/adapter/prisma/services/SuperAdminMembershipFindPrismaService';
+import { FindManyUsersPrismaAdapter } from '../../../../user/adapter/prisma/adapters/FindManyUsersPrismaAdapter';
+import { UserFromUserPrismaBuilder } from '../../../../user/adapter/prisma/builders/UserFromUserPrismaBuilder';
+import { UserPrismaFindManyArgsFromUserFindQueryBuilder } from '../../../../user/adapter/prisma/builders/UserPrismaFindManyArgsFromUserFindQueryBuilder';
 
 export class PrismaModule extends ContainerModule {
   constructor() {
     super((options: ContainerModuleLoadOptions) => {
+      options.bind(UserFromUserPrismaBuilder).toSelf().inSingletonScope();
       options
-        .bind(SuperAdminMembershipFromSuperAdminMembershipPrismaBuilder)
-        .toSelf()
-        .inSingletonScope();
-      options
-        .bind(
-          SuperAdminMembershipPrismaFindManyArgsFromSuperAdminMembershipFindQueryBuilder,
-        )
+        .bind(UserPrismaFindManyArgsFromUserFindQueryBuilder)
         .toSelf()
         .inSingletonScope();
 
       options
-        .bind(findManySuperAdminMembershipOutputPortSymbol)
-        .to(SuperAdminMembershipFindPrismaService)
+        .bind(findManyUsersOutputPortSymbol)
+        .to(FindManyUsersPrismaAdapter)
         .inSingletonScope();
     });
   }

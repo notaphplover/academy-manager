@@ -1,6 +1,6 @@
 import { ContainerModule, ContainerModuleLoadOptions } from 'inversify';
 
-import { SeedSuperAdminUsersInputPort } from '../../../../auth/application/ports/input/SeedSuperAdminUsersInputPort';
+import { SeedSuperAdminUsersInputPort } from '../../../../user/application/ports/input/SeedSuperAdminUsersInputPort';
 
 export class AuthModule extends ContainerModule {
   constructor() {

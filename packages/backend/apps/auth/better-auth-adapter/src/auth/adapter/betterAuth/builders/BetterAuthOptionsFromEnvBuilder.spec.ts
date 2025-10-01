@@ -17,6 +17,7 @@ import { MailDeliveryOutputPort } from '@academyjs/backend-application-mail';
 import { Adapter, BetterAuthOptions } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import {
+  admin,
   emailOTP,
   openAPI,
   organization,
@@ -52,6 +53,7 @@ describe(BetterAuthOptionsFromEnvBuilder, () => {
   describe('.build', () => {
     describe('when called', () => {
       let prismaAdapterResult: (options: BetterAuthOptions) => Adapter;
+      let adminResult: ReturnType<typeof admin>;
       let emailOtpResult: ReturnType<typeof emailOTP>;
       let organizationResult: ReturnType<typeof organization>;
       let openApiResult: ReturnType<typeof openAPI>;
@@ -63,6 +65,7 @@ describe(BetterAuthOptionsFromEnvBuilder, () => {
         prismaAdapterResult = Symbol() as unknown as (
           options: BetterAuthOptions,
         ) => Adapter;
+        adminResult = Symbol() as unknown as ReturnType<typeof admin>;
         emailOtpResult = Symbol() as unknown as ReturnType<typeof emailOTP>;
         organizationResult = Symbol() as unknown as ReturnType<
           typeof organization
@@ -71,6 +74,7 @@ describe(BetterAuthOptionsFromEnvBuilder, () => {
         twoFactorResult = Symbol() as unknown as ReturnType<typeof twoFactor>;
 
         vitest.mocked(prismaAdapter).mockReturnValueOnce(prismaAdapterResult);
+        vitest.mocked(admin).mockReturnValueOnce(adminResult);
         vitest.mocked(emailOTP).mockReturnValueOnce(emailOtpResult);
         vitest.mocked(organization).mockReturnValueOnce(organizationResult);
         vitest.mocked(openAPI).mockReturnValueOnce(openApiResult);
@@ -123,6 +127,7 @@ describe(BetterAuthOptionsFromEnvBuilder, () => {
             level: 'debug',
           },
           plugins: [
+            adminResult,
             emailOtpResult,
             organizationResult,
             openApiResult,

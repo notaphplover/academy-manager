@@ -3,9 +3,13 @@ export {
   type PopulateUsersOutputPort,
   type PopulateUsersOutputPortUser,
   populateUsersOutputPortSymbol,
-} from './auth/application/ports/output/PopulateUsersOutputPort';
-export { SeedSuperAdminUsersInputPort } from './auth/application/ports/input/SeedSuperAdminUsersInputPort';
+} from './user/application/ports/output/PopulateUsersOutputPort';
+export { SeedSuperAdminUsersInputPort } from './user/application/ports/input/SeedSuperAdminUsersInputPort';
 export {
-  type FindManySuperAdminMembershipOutputPort,
-  findManySuperAdminMembershipOutputPortSymbol,
-} from './superAdmin/application/ports/output/FindManySuperAdminMembershipOutputPort';
+  type FindManyUsersOutputPort,
+  findManyUsersOutputPortSymbol,
+} from './user/application/ports/output/FindManyUsersOutputPort';
+export {
+  type UpdateManyUsersOutputPort,
+  updateManyUsersOutputPortSymbol,
+} from './user/application/ports/output/UpdateManyUsersOutputPort';

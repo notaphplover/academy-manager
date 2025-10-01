@@ -1,5 +1,6 @@
 import { Adapter, BetterAuthOptions, Logger } from 'better-auth';
 import {
+  admin,
   emailOTP,
   openAPI,
   organization,
@@ -13,6 +14,7 @@ export interface AppBetterAuthOptions {
   };
   logger: Logger;
   plugins: [
+    ReturnType<typeof admin>,
     ReturnType<typeof emailOTP>,
     ReturnType<typeof organization>,
     ReturnType<typeof openAPI>,

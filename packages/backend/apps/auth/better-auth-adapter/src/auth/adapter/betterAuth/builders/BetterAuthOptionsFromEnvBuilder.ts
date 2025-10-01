@@ -7,6 +7,7 @@ import { Builder } from '@academyjs/backend-common';
 import { BetterAuthOptions } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import {
+  admin,
   emailOTP,
   openAPI,
   organization,
@@ -48,6 +49,7 @@ export class BetterAuthOptionsFromEnvBuilder
         level: 'debug',
       },
       plugins: [
+        admin(),
         emailOTP({
           sendVerificationOTP: async ({
             email,
