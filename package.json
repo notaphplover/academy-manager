@@ -6,9 +6,9 @@
   "description": "Academy manager sample application on top of InversifyJS",
   "devDependencies": {
     "@changesets/cli": "2.29.7",
-    "@commitlint/cli": "19.8.1",
-    "@commitlint/config-conventional": "19.8.1",
-    "@commitlint/prompt-cli": "19.8.1",
+    "@commitlint/cli": "20.1.0",
+    "@commitlint/config-conventional": "20.0.0",
+    "@commitlint/prompt-cli": "20.1.0",
     "@academyjs/foundation-eslint-config": "workspace:*",
     "@academyjs/foundation-prettier-config": "workspace:*",
     "@academyjs/foundation-rollup-config": "workspace:*",
