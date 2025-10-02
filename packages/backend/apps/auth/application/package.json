@@ -4,9 +4,12 @@
     "url": "https://github.com/notaphplover/academy-manager/issues"
   },
   "description": "Backend application auth package",
+  "dependencies": {
+    "@academyjs/backend-auth-env": "workspace:*",
+    "@inversifyjs/logger": "1.1.0"
+  },
   "devDependencies": {
     "@academyjs/backend-auth-domain": "workspace:*",
-    "@academyjs/backend-auth-env": "workspace:*",
     "@stryker-mutator/core": "9.1.1",
     "@stryker-mutator/typescript-checker": "9.1.1",
     "@stryker-mutator/vitest-runner": "9.1.1",

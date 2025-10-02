@@ -1,8 +1,9 @@
-import { User } from '@academyjs/backend-auth-domain';
+import { User, UserUpdateQuery } from '@academyjs/backend-auth-domain';
 import {
   EnvironmentService,
   SuperAdminUser,
 } from '@academyjs/backend-auth-env';
+import { ConsoleLogger, Logger } from '@inversifyjs/logger';
 import { inject, injectable } from 'inversify';
 
 import {
@@ -13,12 +14,20 @@ import {
   PopulateUsersOutputPort,
   populateUsersOutputPortSymbol,
 } from '../output/PopulateUsersOutputPort';
+import {
+  UpdateManyUsersOutputPort,
+  updateManyUsersOutputPortSymbol,
+} from '../output/UpdateManyUsersOutputPort';
+
+const BETTER_AUTH_ADMIN_ROLE: string = 'admin';
 
 @injectable()
 export class SeedSuperAdminUsersInputPort {
   readonly #findManyUsersOutputPort: FindManyUsersOutputPort;
+  readonly #logger: Logger;
   readonly #populateUsersOutputPort: PopulateUsersOutputPort;
   readonly #superAdminList: SuperAdminUser[];
+  readonly #updateManyUsersOutputPort: UpdateManyUsersOutputPort;
 
   constructor(
     @inject(EnvironmentService) environmentService: EnvironmentService,
@@ -26,10 +35,14 @@ export class SeedSuperAdminUsersInputPort {
     findManyUsersOutputPort: FindManyUsersOutputPort,
     @inject(populateUsersOutputPortSymbol)
     populateUsersOutputPort: PopulateUsersOutputPort,
+    @inject(updateManyUsersOutputPortSymbol)
+    updateManyUsersOutputPort: UpdateManyUsersOutputPort,
   ) {
     this.#findManyUsersOutputPort = findManyUsersOutputPort;
+    this.#logger = new ConsoleLogger('SeedSuperAdminUsersInputPort');
     this.#populateUsersOutputPort = populateUsersOutputPort;
     this.#superAdminList = environmentService.getEnvironment().superAdminList;
+    this.#updateManyUsersOutputPort = updateManyUsersOutputPort;
   }
 
   public async seedSuperAdminUsers(): Promise<void> {
@@ -37,9 +50,10 @@ export class SeedSuperAdminUsersInputPort {
       (user: SuperAdminUser) => user.email,
     );
 
+    this.#logger.info(`Seeding super admin users: ${userEmails.join(', ')}`);
+
     const existingUsers: User[] = await this.#findManyUsersOutputPort.findMany({
       email: userEmails,
-      id: [],
     });
 
     const nonExistingSuperAdminUserList: SuperAdminUser[] =
@@ -51,11 +65,32 @@ export class SeedSuperAdminUsersInputPort {
       );
 
     if (nonExistingSuperAdminUserList.length === 0) {
+      this.#logger.info('Super admin users already seeded. No action needed.');
       return;
     }
+
+    const nonExistingSuperAdminUserEmailList: string[] =
+      nonExistingSuperAdminUserList.map(
+        (superAdminUser: SuperAdminUser): string => superAdminUser.email,
+      );
+
+    this.#logger.info(
+      `Found super admin users to seed: ${nonExistingSuperAdminUserEmailList.join(', ')}`,
+    );
 
     await this.#populateUsersOutputPort.populateUsers(
       nonExistingSuperAdminUserList,
     );
+
+    const userUpdateQuery: UserUpdateQuery = {
+      findQuery: {
+        email: nonExistingSuperAdminUserEmailList,
+      },
+      setQuery: {
+        role: BETTER_AUTH_ADMIN_ROLE,
+      },
+    };
+
+    await this.#updateManyUsersOutputPort.updateMany(userUpdateQuery);
   }
 }
