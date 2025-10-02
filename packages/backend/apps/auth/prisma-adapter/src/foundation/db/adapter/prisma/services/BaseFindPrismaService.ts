@@ -1,7 +1,7 @@
 import { FindManyPrismaService } from '@academyjs/backend-db';
 
-import { PrismaClient } from '../../../../generated';
-import * as runtime from '../../../../generated/runtime/library.js';
+import { PrismaClient } from '../../../../../../generated';
+import * as runtime from '../../../../../../generated/runtime/library.js';
 
 export abstract class BaseFindManyPrismaService<
   TModel,

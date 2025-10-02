@@ -8,7 +8,7 @@ import {
   User as PrismaUser,
 } from '../../../../../generated';
 import * as runtime from '../../../../../generated/runtime/library.js';
-import { BaseFindManyPrismaService } from '../../../../foundation/db/adapter/BaseFindPrismaService';
+import { BaseFindManyPrismaService } from '../../../../foundation/db/adapter/prisma/services/BaseFindPrismaService';
 import { UserFromUserPrismaBuilder } from '../builders/UserFromUserPrismaBuilder';
 import { UserPrismaFindManyArgsFromUserFindQueryBuilder } from '../builders/UserPrismaFindManyArgsFromUserFindQueryBuilder';
 

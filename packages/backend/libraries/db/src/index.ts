@@ -6,3 +6,4 @@ export { type PrismaBatchPayload } from './persistence/adapter/prisma/models/Pri
 export { CreatePrismaService } from './persistence/adapter/prisma/services/CreatePrismaService';
 export { CreateManyPrismaService } from './persistence/adapter/prisma/services/CreateManyPrismaService';
 export { FindManyPrismaService } from './persistence/adapter/prisma/services/FindManyPrismaService';
+export { UpdateManyPrismaService } from './persistence/adapter/prisma/services/UpdateManyPrismaService';
