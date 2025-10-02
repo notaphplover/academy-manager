@@ -6,6 +6,7 @@
   "description": "Backend seed auth service package",
   "dependencies": {
     "@academyjs/auth-better-auth": "workspace:*",
+    "@academyjs/auth-prisma": "workspace:*",
     "@academyjs/backend-application-mail": "workspace:*",
     "@academyjs/backend-auth-application": "workspace:*",
     "@academyjs/backend-auth-env": "workspace:*",

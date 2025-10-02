@@ -18,6 +18,10 @@ export class UserPrismaFindManyArgsFromUserFindQueryBuilder
       findManyArgsWhere.id = { in: userFindQuery.id };
     }
 
+    if (userFindQuery.email !== undefined && userFindQuery.email.length > 0) {
+      findManyArgsWhere.email = { in: userFindQuery.email };
+    }
+
     return findManyArgs;
   }
 }

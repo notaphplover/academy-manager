@@ -3,6 +3,7 @@ import {
   BetterAuthModule,
   betterAuthServiceIdentifier,
 } from '@academyjs/auth-better-auth';
+import { PrismaModule } from '@academyjs/auth-prisma';
 import { MailClientOptions } from '@academyjs/backend-application-mail';
 import { AuthModule as AppAuthModule } from '@academyjs/backend-auth-application';
 import {
@@ -51,6 +52,7 @@ export async function buildContainer(): Promise<Container> {
         };
       },
     }),
+    new PrismaModule(),
   );
 
   return container;

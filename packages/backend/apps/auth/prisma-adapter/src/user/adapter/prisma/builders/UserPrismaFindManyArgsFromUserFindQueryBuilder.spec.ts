@@ -100,5 +100,65 @@ describe(UserPrismaFindManyArgsFromUserFindQueryBuilder, () => {
         });
       });
     });
+
+    describe('having a UserFindQuery with empty email array', () => {
+      let userFindQueryFixture: UserFindQuery;
+
+      beforeAll(() => {
+        userFindQueryFixture = {
+          email: [],
+        };
+      });
+
+      describe('when called', () => {
+        let result: unknown;
+
+        beforeAll(() => {
+          result =
+            userPrismaFindManyArgsFromUserFindQueryBuilder.build(
+              userFindQueryFixture,
+            );
+        });
+
+        it('should return expected result', () => {
+          const expected: Prisma.UserFindManyArgs = {
+            where: {},
+          };
+
+          expect(result).toStrictEqual(expected);
+        });
+      });
+    });
+
+    describe('having a UserFindQuery with single email', () => {
+      let userFindQueryFixture: UserFindQuery;
+
+      beforeAll(() => {
+        userFindQueryFixture = {
+          email: ['user@example.com'],
+        };
+      });
+
+      describe('when called', () => {
+        let result: unknown;
+
+        beforeAll(() => {
+          result =
+            userPrismaFindManyArgsFromUserFindQueryBuilder.build(
+              userFindQueryFixture,
+            );
+        });
+
+        it('should return expected result', () => {
+          const expected: Prisma.UserFindManyArgs = {
+            where: {
+              email: { in: userFindQueryFixture.email as string[] },
+            },
+          };
+
+          expect(result).toStrictEqual(expected);
+        });
+      });
+    });
   });
 });
