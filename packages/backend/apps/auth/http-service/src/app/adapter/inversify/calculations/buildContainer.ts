@@ -3,6 +3,7 @@ import {
   BetterAuthModule,
   betterAuthServiceIdentifier,
 } from '@academyjs/auth-better-auth';
+import { PrismaModule } from '@academyjs/auth-prisma';
 import { MailClientOptions } from '@academyjs/backend-application-mail';
 import {
   Environment,
@@ -10,11 +11,15 @@ import {
   EnvModule,
 } from '@academyjs/backend-auth-env';
 import { MailModule } from '@academyjs/mail-nodemailer';
+import { UseGuard } from '@inversifyjs/framework-core';
 import {
   BetterAuth,
   BetterAuthHonoContainerModule,
 } from '@inversifyjs/http-better-auth';
-import { bindingScopeValues, Container } from 'inversify';
+import { bindingScopeValues, Container, decorate, Newable } from 'inversify';
+
+import { AuthGuard } from '../../../../auth/adapter/inversify/middlewares/AuthGuard';
+import { AppModule } from '../modules/AppModule';
 
 export async function buildContainer(): Promise<Container> {
   const container: Container = new Container({
@@ -22,12 +27,18 @@ export async function buildContainer(): Promise<Container> {
   });
 
   await container.load(
+    new AppModule(),
     new BetterAuthHonoContainerModule(
       'api/auth',
       (
         betterAuth: BetterAuth<AppBetterAuthOptions>,
       ): BetterAuth<AppBetterAuthOptions> => betterAuth,
       [betterAuthServiceIdentifier],
+      (controller: Newable<unknown>): Newable<unknown> => {
+        decorate(UseGuard(AuthGuard), controller);
+
+        return controller;
+      },
     ),
     new BetterAuthModule(),
     new EnvModule(),
@@ -49,6 +60,7 @@ export async function buildContainer(): Promise<Container> {
         };
       },
     }),
+    new PrismaModule(),
   );
 
   return container;

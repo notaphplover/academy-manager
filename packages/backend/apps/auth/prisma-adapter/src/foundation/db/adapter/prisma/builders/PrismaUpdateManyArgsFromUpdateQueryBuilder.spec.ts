@@ -89,19 +89,13 @@ describe(PrismaUpdateManyArgsFromUpdateQueryBuilder, () => {
       it('should call prismaFindManyArgsFromFindQueryBuilder.build()', () => {
         expect(
           prismaFindManyArgsFromFindQueryBuilderMock.build,
-        ).toHaveBeenCalledTimes(1);
-        expect(
-          prismaFindManyArgsFromFindQueryBuilderMock.build,
-        ).toHaveBeenCalledWith(findQueryFixture);
+        ).toHaveBeenCalledExactlyOnceWith(findQueryFixture);
       });
 
       it('should call prismaUpdateManyArgsDataFromSetQueryBuilder.build()', () => {
         expect(
           prismaUpdateManyArgsDataFromSetQueryBuilderMock.build,
-        ).toHaveBeenCalledTimes(1);
-        expect(
-          prismaUpdateManyArgsDataFromSetQueryBuilderMock.build,
-        ).toHaveBeenCalledWith(setQueryFixture);
+        ).toHaveBeenCalledExactlyOnceWith(setQueryFixture);
       });
 
       it('should return expected result', () => {
@@ -152,19 +146,13 @@ describe(PrismaUpdateManyArgsFromUpdateQueryBuilder, () => {
       it('should call prismaFindManyArgsFromFindQueryBuilder.build()', () => {
         expect(
           prismaFindManyArgsFromFindQueryBuilderMock.build,
-        ).toHaveBeenCalledTimes(1);
-        expect(
-          prismaFindManyArgsFromFindQueryBuilderMock.build,
-        ).toHaveBeenCalledWith(findQueryFixture);
+        ).toHaveBeenCalledExactlyOnceWith(findQueryFixture);
       });
 
       it('should call prismaUpdateManyArgsDataFromSetQueryBuilder.build()', () => {
         expect(
           prismaUpdateManyArgsDataFromSetQueryBuilderMock.build,
-        ).toHaveBeenCalledTimes(1);
-        expect(
-          prismaUpdateManyArgsDataFromSetQueryBuilderMock.build,
-        ).toHaveBeenCalledWith(setQueryFixture);
+        ).toHaveBeenCalledExactlyOnceWith(setQueryFixture);
       });
 
       it('should return expected result', () => {

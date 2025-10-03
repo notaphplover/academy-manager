@@ -14,6 +14,7 @@ vitest.mock('better-auth/adapters/prisma');
 
 import { PrismaClient } from '@academyjs/auth-prisma';
 import { MailDeliveryOutputPort } from '@academyjs/backend-application-mail';
+import { FindManyUsersOutputPort } from '@academyjs/backend-auth-application';
 import { Adapter, BetterAuthOptions } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import {
@@ -29,12 +30,15 @@ import { AppBetterAuthOptions } from '../models/AppBetterAuthOptions';
 import { BetterAuthOptionsFromEnvBuilder } from './BetterAuthOptionsFromEnvBuilder';
 
 describe(BetterAuthOptionsFromEnvBuilder, () => {
+  let findManyUsersOutputPortFixture: FindManyUsersOutputPort;
   let mailDeliveryOutputPortMock: Mocked<MailDeliveryOutputPort>;
   let mailDeliveryOptionsFromSendOtpMailOptionsBuilder: Mocked<MailDeliveryOptionsFromSendOtpMailOptionsBuilder>;
 
   let betterAuthOptionsFromEnvBuilder: BetterAuthOptionsFromEnvBuilder;
 
   beforeAll(() => {
+    findManyUsersOutputPortFixture =
+      Symbol() as unknown as FindManyUsersOutputPort;
     mailDeliveryOutputPortMock = {
       send: vitest.fn(),
     };
@@ -45,6 +49,7 @@ describe(BetterAuthOptionsFromEnvBuilder, () => {
     > as Mocked<MailDeliveryOptionsFromSendOtpMailOptionsBuilder>;
 
     betterAuthOptionsFromEnvBuilder = new BetterAuthOptionsFromEnvBuilder(
+      findManyUsersOutputPortFixture,
       mailDeliveryOutputPortMock,
       mailDeliveryOptionsFromSendOtpMailOptionsBuilder,
     );
@@ -88,32 +93,32 @@ describe(BetterAuthOptionsFromEnvBuilder, () => {
       });
 
       it('should call prismaAdapter()', () => {
-        expect(prismaAdapter).toHaveBeenCalledTimes(1);
-        expect(prismaAdapter).toHaveBeenCalledWith(expect.any(PrismaClient), {
-          provider: 'postgresql',
-        });
+        expect(prismaAdapter).toHaveBeenCalledExactlyOnceWith(
+          expect.any(PrismaClient),
+          {
+            provider: 'postgresql',
+          },
+        );
       });
 
       it('should call emailOTP()', () => {
-        expect(emailOTP).toHaveBeenCalledTimes(1);
-        expect(emailOTP).toHaveBeenCalledWith({
+        expect(emailOTP).toHaveBeenCalledExactlyOnceWith({
           sendVerificationOTP: expect.any(Function),
         });
       });
 
       it('should call organization()', () => {
-        expect(organization).toHaveBeenCalledTimes(1);
-        expect(organization).toHaveBeenCalledWith();
+        expect(organization).toHaveBeenCalledExactlyOnceWith({
+          allowUserToCreateOrganization: expect.any(Function),
+        });
       });
 
       it('should call openAPI()', () => {
-        expect(openAPI).toHaveBeenCalledTimes(1);
-        expect(openAPI).toHaveBeenCalledWith();
+        expect(openAPI).toHaveBeenCalledExactlyOnceWith();
       });
 
       it('should call twoFactor()', () => {
-        expect(twoFactor).toHaveBeenCalledTimes(1);
-        expect(twoFactor).toHaveBeenCalledWith();
+        expect(twoFactor).toHaveBeenCalledExactlyOnceWith();
       });
 
       it('should return expected result', () => {

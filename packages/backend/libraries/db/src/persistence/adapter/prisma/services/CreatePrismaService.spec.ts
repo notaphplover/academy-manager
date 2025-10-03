@@ -144,24 +144,19 @@ describe(CreatePrismaService, () => {
         it('should call prismaCreateArgsFromCreateQueryBuilder.build()', () => {
           expect(
             prismaCreateArgsFromCreateQueryBuilder.build,
-          ).toHaveBeenCalledTimes(1);
-          expect(
-            prismaCreateArgsFromCreateQueryBuilder.build,
-          ).toHaveBeenCalledWith(queryFixture);
+          ).toHaveBeenCalledExactlyOnceWith(queryFixture);
         });
 
         it('should call delegate.create()', () => {
-          expect(delegateMock.create).toHaveBeenCalledTimes(1);
-          expect(delegateMock.create).toHaveBeenCalledWith(
+          expect(delegateMock.create).toHaveBeenCalledExactlyOnceWith(
             prismaCreateArgsFixture,
           );
         });
 
         it('should call modelFromPrismaModelBuilder.build()', () => {
-          expect(modelFromPrismaModelBuilder.build).toHaveBeenCalledTimes(1);
-          expect(modelFromPrismaModelBuilder.build).toHaveBeenCalledWith(
-            prismaModuleFixture,
-          );
+          expect(
+            modelFromPrismaModelBuilder.build,
+          ).toHaveBeenCalledExactlyOnceWith(prismaModuleFixture);
         });
 
         it('should return the expected result', () => {
@@ -229,8 +224,7 @@ describe(CreatePrismaService, () => {
         });
 
         it('should call getDelegate()', () => {
-          expect(getDelegateMock).toHaveBeenCalledTimes(1);
-          expect(getDelegateMock).toHaveBeenCalledWith(
+          expect(getDelegateMock).toHaveBeenCalledExactlyOnceWith(
             transactionClientFixture,
           );
         });
@@ -238,17 +232,13 @@ describe(CreatePrismaService, () => {
         it('should call prismaCreateArgsFromCreateQueryBuilder.build()', () => {
           expect(
             prismaCreateArgsFromCreateQueryBuilder.build,
-          ).toHaveBeenCalledTimes(1);
-          expect(
-            prismaCreateArgsFromCreateQueryBuilder.build,
-          ).toHaveBeenCalledWith(queryFixture);
+          ).toHaveBeenCalledExactlyOnceWith(queryFixture);
         });
 
         it('should call transactionDelegate.create()', () => {
-          expect(transactionDelegateMock.create).toHaveBeenCalledTimes(1);
-          expect(transactionDelegateMock.create).toHaveBeenCalledWith(
-            prismaCreateArgsFixture,
-          );
+          expect(
+            transactionDelegateMock.create,
+          ).toHaveBeenCalledExactlyOnceWith(prismaCreateArgsFixture);
         });
 
         it('should not call delegate.create()', () => {
@@ -256,10 +246,9 @@ describe(CreatePrismaService, () => {
         });
 
         it('should call modelFromPrismaModelBuilder.build()', () => {
-          expect(modelFromPrismaModelBuilder.build).toHaveBeenCalledTimes(1);
-          expect(modelFromPrismaModelBuilder.build).toHaveBeenCalledWith(
-            prismaModuleFixture,
-          );
+          expect(
+            modelFromPrismaModelBuilder.build,
+          ).toHaveBeenCalledExactlyOnceWith(prismaModuleFixture);
         });
 
         it('should return the expected result', () => {

@@ -6,6 +6,7 @@
   "description": "Better Auth adapter",
   "dependencies": {
     "@academyjs/backend-auth-application": "workspace:*",
+    "@academyjs/backend-auth-domain": "workspace:*",
     "@academyjs/auth-prisma": "workspace:*",
     "@academyjs/backend-application-mail": "workspace:*",
     "@academyjs/backend-auth-env": "workspace:*",

@@ -84,8 +84,7 @@ describe(MailDeliveryNodeMailerAdapter, () => {
           },
         };
 
-        expect(retry).toHaveBeenCalledTimes(1);
-        expect(retry).toHaveBeenCalledWith(expectedRetryOptions);
+        expect(retry).toHaveBeenCalledExactlyOnceWith(expectedRetryOptions);
       });
 
       it('should call transporter.sendMail()', () => {
@@ -97,8 +96,7 @@ describe(MailDeliveryNodeMailerAdapter, () => {
           to: mailDeliveryOptionsFixture.to,
         };
 
-        expect(transporterMock.sendMail).toHaveBeenCalledTimes(1);
-        expect(transporterMock.sendMail).toHaveBeenCalledWith(
+        expect(transporterMock.sendMail).toHaveBeenCalledExactlyOnceWith(
           expectedSendMailOptions,
         );
       });

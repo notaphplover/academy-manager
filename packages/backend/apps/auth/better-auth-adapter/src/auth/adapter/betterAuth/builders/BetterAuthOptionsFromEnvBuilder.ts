@@ -3,8 +3,13 @@ import {
   MailDeliveryOutputPort,
   mailDeliveryOutputPortSymbol,
 } from '@academyjs/backend-application-mail';
+import {
+  FindManyUsersOutputPort,
+  findManyUsersOutputPortSymbol,
+} from '@academyjs/backend-auth-application';
+import { User } from '@academyjs/backend-auth-domain';
 import { Builder } from '@academyjs/backend-common';
-import { BetterAuthOptions } from 'better-auth';
+import { BetterAuthOptions, InferUser, PrettifyDeep } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import {
   admin,
@@ -18,19 +23,25 @@ import { inject, injectable } from 'inversify';
 import { MailDeliveryOptionsFromSendOtpMailOptionsBuilder } from '../../../../mail/applcation/builders/MailDeliveryOptionsFromSendOtpMailOptionsBuilder';
 import { AppBetterAuthOptions } from '../models/AppBetterAuthOptions';
 
+const BETTER_AUTH_ADMIN_ROLE: string = 'admin';
+
 @injectable()
 export class BetterAuthOptionsFromEnvBuilder
   implements Builder<AppBetterAuthOptions>
 {
+  readonly #findManyUsersOutputPort: FindManyUsersOutputPort;
   readonly #mailDeliveryOutputPort: MailDeliveryOutputPort;
   readonly #mailDeliveryOptionsFromSendOtpMailOptionsBuilder: MailDeliveryOptionsFromSendOtpMailOptionsBuilder;
 
   constructor(
+    @inject(findManyUsersOutputPortSymbol)
+    findManyUsersOutputPort: FindManyUsersOutputPort,
     @inject(mailDeliveryOutputPortSymbol)
     mailDeliveryOutputPort: MailDeliveryOutputPort,
     @inject(MailDeliveryOptionsFromSendOtpMailOptionsBuilder)
     mailDeliveryOptionsFromSendOtpMailOptionsBuilder: MailDeliveryOptionsFromSendOtpMailOptionsBuilder,
   ) {
+    this.#findManyUsersOutputPort = findManyUsersOutputPort;
     this.#mailDeliveryOutputPort = mailDeliveryOutputPort;
     this.#mailDeliveryOptionsFromSendOtpMailOptionsBuilder =
       mailDeliveryOptionsFromSendOtpMailOptionsBuilder;
@@ -69,7 +80,18 @@ export class BetterAuthOptionsFromEnvBuilder
             );
           },
         }),
-        organization(),
+        organization({
+          allowUserToCreateOrganization: async (
+            user: PrettifyDeep<InferUser<AppBetterAuthOptions>>,
+          ) => {
+            const [domainUser]: User[] =
+              await this.#findManyUsersOutputPort.findMany({
+                id: [user.id],
+              });
+
+            return domainUser?.role === BETTER_AUTH_ADMIN_ROLE;
+          },
+        }),
         openAPI(),
         twoFactor(),
       ],

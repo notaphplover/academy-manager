@@ -150,15 +150,11 @@ describe(FindManyPrismaService, () => {
         it('should call prismaFindManyArgsFromFindQueryBuilder.build()', () => {
           expect(
             prismaFindManyArgsFromFindQueryBuilder.build,
-          ).toHaveBeenCalledTimes(1);
-          expect(
-            prismaFindManyArgsFromFindQueryBuilder.build,
-          ).toHaveBeenCalledWith(queryFixture);
+          ).toHaveBeenCalledExactlyOnceWith(queryFixture);
         });
 
         it('should call delegate.findMany()', () => {
-          expect(delegateMock.findMany).toHaveBeenCalledTimes(1);
-          expect(delegateMock.findMany).toHaveBeenCalledWith(
+          expect(delegateMock.findMany).toHaveBeenCalledExactlyOnceWith(
             prismaFindManyArgsFixture,
           );
         });
@@ -207,15 +203,11 @@ describe(FindManyPrismaService, () => {
         it('should call prismaFindManyArgsFromFindQueryBuilder.build()', () => {
           expect(
             prismaFindManyArgsFromFindQueryBuilder.build,
-          ).toHaveBeenCalledTimes(1);
-          expect(
-            prismaFindManyArgsFromFindQueryBuilder.build,
-          ).toHaveBeenCalledWith(queryFixture);
+          ).toHaveBeenCalledExactlyOnceWith(queryFixture);
         });
 
         it('should call delegate.findMany()', () => {
-          expect(delegateMock.findMany).toHaveBeenCalledTimes(1);
-          expect(delegateMock.findMany).toHaveBeenCalledWith(
+          expect(delegateMock.findMany).toHaveBeenCalledExactlyOnceWith(
             prismaFindManyArgsFixture,
           );
         });
@@ -300,8 +292,7 @@ describe(FindManyPrismaService, () => {
         });
 
         it('should call getDelegate()', () => {
-          expect(getDelegateMock).toHaveBeenCalledTimes(1);
-          expect(getDelegateMock).toHaveBeenCalledWith(
+          expect(getDelegateMock).toHaveBeenCalledExactlyOnceWith(
             transactionClientFixture,
           );
         });
@@ -309,17 +300,13 @@ describe(FindManyPrismaService, () => {
         it('should call prismaFindManyArgsFromFindQueryBuilder.build()', () => {
           expect(
             prismaFindManyArgsFromFindQueryBuilder.build,
-          ).toHaveBeenCalledTimes(1);
-          expect(
-            prismaFindManyArgsFromFindQueryBuilder.build,
-          ).toHaveBeenCalledWith(queryFixture);
+          ).toHaveBeenCalledExactlyOnceWith(queryFixture);
         });
 
         it('should call transactionDelegate.findMany()', () => {
-          expect(transactionDelegateMock.findMany).toHaveBeenCalledTimes(1);
-          expect(transactionDelegateMock.findMany).toHaveBeenCalledWith(
-            prismaFindManyArgsFixture,
-          );
+          expect(
+            transactionDelegateMock.findMany,
+          ).toHaveBeenCalledExactlyOnceWith(prismaFindManyArgsFixture);
         });
 
         it('should not call delegate.findMany()', () => {

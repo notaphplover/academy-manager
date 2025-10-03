@@ -112,15 +112,11 @@ describe(PopulateUsersBetterAuthAdapter, () => {
 
         expect(
           mailDeliveryOptionsFromSendUserCreatedMailOptionsBuilderMock.build,
-        ).toHaveBeenCalledTimes(1);
-        expect(
-          mailDeliveryOptionsFromSendUserCreatedMailOptionsBuilderMock.build,
-        ).toHaveBeenCalledWith(expected);
+        ).toHaveBeenCalledExactlyOnceWith(expected);
       });
 
       it('should call mailDeliveryOutputPort.send()', () => {
-        expect(mailDeliveryOutputPortMock.send).toHaveBeenCalledTimes(1);
-        expect(mailDeliveryOutputPortMock.send).toHaveBeenCalledWith(
+        expect(mailDeliveryOutputPortMock.send).toHaveBeenCalledExactlyOnceWith(
           mailDeliveryOptionsFixture,
         );
       });

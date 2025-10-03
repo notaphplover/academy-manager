@@ -103,19 +103,15 @@ describe(SeedSuperAdminUsersInputPort, () => {
           email: [superAdminListFixture.email],
         };
 
-        expect(findManyUsersOutputPortMock.findMany).toHaveBeenCalledTimes(1);
-        expect(findManyUsersOutputPortMock.findMany).toHaveBeenCalledWith(
-          expected,
-        );
+        expect(
+          findManyUsersOutputPortMock.findMany,
+        ).toHaveBeenCalledExactlyOnceWith(expected);
       });
 
       it('should call populateUsersOutputPort.populateUsers()', () => {
-        expect(populateUsersOutputPortMock.populateUsers).toHaveBeenCalledTimes(
-          1,
-        );
-        expect(populateUsersOutputPortMock.populateUsers).toHaveBeenCalledWith([
-          superAdminListFixture,
-        ]);
+        expect(
+          populateUsersOutputPortMock.populateUsers,
+        ).toHaveBeenCalledExactlyOnceWith([superAdminListFixture]);
       });
 
       it('should call updateManyUsersOutputPort.updateMany()', () => {
@@ -128,12 +124,9 @@ describe(SeedSuperAdminUsersInputPort, () => {
           },
         };
 
-        expect(updateManyUsersOutputPortMock.updateMany).toHaveBeenCalledTimes(
-          1,
-        );
-        expect(updateManyUsersOutputPortMock.updateMany).toHaveBeenCalledWith(
-          expected,
-        );
+        expect(
+          updateManyUsersOutputPortMock.updateMany,
+        ).toHaveBeenCalledExactlyOnceWith(expected);
       });
 
       it('should return undefined', () => {

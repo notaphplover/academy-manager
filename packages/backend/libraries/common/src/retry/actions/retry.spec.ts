@@ -51,8 +51,7 @@ describe(retry, () => {
       });
 
       it('should call the function', () => {
-        expect(functionMock).toHaveBeenCalledTimes(1);
-        expect(functionMock).toHaveBeenCalledWith();
+        expect(functionMock).toHaveBeenCalledExactlyOnceWith();
       });
 
       it('should return expected result', () => {
@@ -134,8 +133,7 @@ describe(retry, () => {
       });
 
       it('should call the function', () => {
-        expect(functionMock).toHaveBeenCalledTimes(1);
-        expect(functionMock).toHaveBeenCalledWith();
+        expect(functionMock).toHaveBeenCalledExactlyOnceWith();
       });
 
       it('should return expected result', () => {
@@ -298,8 +296,7 @@ describe(retry, () => {
       });
 
       it('should call the function', () => {
-        expect(functionMock).toHaveBeenCalledTimes(1);
-        expect(functionMock).toHaveBeenCalledWith();
+        expect(functionMock).toHaveBeenCalledExactlyOnceWith();
       });
 
       it('should return expected result', () => {

@@ -139,17 +139,13 @@ describe(UpdateManyPrismaService, () => {
         it('should call prismaUpdateManyArgsFromUpdateQueryBuilder.build()', () => {
           expect(
             prismaUpdateManyArgsFromUpdateQueryBuilder.build,
-          ).toHaveBeenCalledTimes(1);
-          expect(
-            prismaUpdateManyArgsFromUpdateQueryBuilder.build,
-          ).toHaveBeenCalledWith(queryFixture);
+          ).toHaveBeenCalledExactlyOnceWith(queryFixture);
         });
 
         it('should call delegate.updateManyAndReturn()', () => {
-          expect(delegateMock.updateManyAndReturn).toHaveBeenCalledTimes(1);
-          expect(delegateMock.updateManyAndReturn).toHaveBeenCalledWith(
-            prismaUpdateManyArgsFixture,
-          );
+          expect(
+            delegateMock.updateManyAndReturn,
+          ).toHaveBeenCalledExactlyOnceWith(prismaUpdateManyArgsFixture);
         });
 
         it('should call modelFromPrismaModelBuilder.build()', () => {
@@ -198,17 +194,13 @@ describe(UpdateManyPrismaService, () => {
         it('should call prismaUpdateManyArgsFromUpdateQueryBuilder.build()', () => {
           expect(
             prismaUpdateManyArgsFromUpdateQueryBuilder.build,
-          ).toHaveBeenCalledTimes(1);
-          expect(
-            prismaUpdateManyArgsFromUpdateQueryBuilder.build,
-          ).toHaveBeenCalledWith(queryFixture);
+          ).toHaveBeenCalledExactlyOnceWith(queryFixture);
         });
 
         it('should call delegate.updateManyAndReturn()', () => {
-          expect(delegateMock.updateManyAndReturn).toHaveBeenCalledTimes(1);
-          expect(delegateMock.updateManyAndReturn).toHaveBeenCalledWith(
-            prismaUpdateManyArgsFixture,
-          );
+          expect(
+            delegateMock.updateManyAndReturn,
+          ).toHaveBeenCalledExactlyOnceWith(prismaUpdateManyArgsFixture);
         });
 
         it('should not call modelFromPrismaModelBuilder.build()', () => {
@@ -289,8 +281,7 @@ describe(UpdateManyPrismaService, () => {
         });
 
         it('should call getDelegate()', () => {
-          expect(getDelegateMock).toHaveBeenCalledTimes(1);
-          expect(getDelegateMock).toHaveBeenCalledWith(
+          expect(getDelegateMock).toHaveBeenCalledExactlyOnceWith(
             transactionClientFixture,
           );
         });
@@ -298,19 +289,13 @@ describe(UpdateManyPrismaService, () => {
         it('should call prismaUpdateManyArgsFromUpdateQueryBuilder.build()', () => {
           expect(
             prismaUpdateManyArgsFromUpdateQueryBuilder.build,
-          ).toHaveBeenCalledTimes(1);
-          expect(
-            prismaUpdateManyArgsFromUpdateQueryBuilder.build,
-          ).toHaveBeenCalledWith(queryFixture);
+          ).toHaveBeenCalledExactlyOnceWith(queryFixture);
         });
 
         it('should call transactionDelegate.updateManyAndReturn()', () => {
           expect(
             transactionDelegateMock.updateManyAndReturn,
-          ).toHaveBeenCalledTimes(1);
-          expect(
-            transactionDelegateMock.updateManyAndReturn,
-          ).toHaveBeenCalledWith(prismaUpdateManyArgsFixture);
+          ).toHaveBeenCalledExactlyOnceWith(prismaUpdateManyArgsFixture);
         });
 
         it('should not call delegate.updateManyAndReturn()', () => {
