@@ -1,0 +1,20 @@
+# Typescript compiled files
+
+/tsconfig.tsbuildinfo
+/tsconfig.cjs.tsbuildinfo
+/tsconfig.esm.tsbuildinfo
+
+# node modules
+/node_modules/
+
+# Turborepo files
+.turbo/
+
+# Next.js build output
+/.next
+
+# Next.js typings
+/next-env.d.ts
+
+# Env file
+.env

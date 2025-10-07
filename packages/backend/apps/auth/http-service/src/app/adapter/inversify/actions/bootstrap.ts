@@ -5,6 +5,7 @@ import { ConsoleLogger, Logger } from '@inversifyjs/logger';
 import { Hono } from 'hono';
 import { Container } from 'inversify';
 
+import { CorsMiddleware } from '../../../cors/adapter/inversify/middlewares/CorsMiddleware';
 import { buildContainer } from '../calculations/buildContainer';
 import { registerSignalHandlers } from './registerSignalHandlers';
 
@@ -21,6 +22,8 @@ export async function bootstrap(): Promise<void> {
     new InversifyHonoHttpAdapter(container, {
       logger,
     });
+
+  inversifyHonoHttpAdapter.applyGlobalMiddleware(CorsMiddleware);
 
   const hono: Hono = await inversifyHonoHttpAdapter.build();
 

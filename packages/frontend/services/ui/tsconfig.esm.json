@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "extends": "@academyjs/foundation-typescript-config/tsconfig.base.esm.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": "src/",
+    "incremental": true,
+    "lib": ["DOM", "ES2022"],
+    "jsx": "preserve",
+    "module": "esnext",
+    "noEmit": true,
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "resolveJsonModule": true,
+    "tsBuildInfoFile": "tsconfig.esm.tsbuildinfo",
+    "verbatimModuleSyntax": true
+  },
+  "include": [
+    "src",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

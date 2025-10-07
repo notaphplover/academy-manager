@@ -1,15 +1,17 @@
 packages:
+  - packages/frontend/services/*
   - packages/backend/apps/auth/*
   - packages/backend/apps/mail/*
   - packages/backend/libraries/*
   - packages/backend/tools/*
   - packages/foundation/tools/*
 
-ignoredBuiltDependencies:
+ignoredBuiltDependencies: null
 
 onlyBuiltDependencies:
   - '@prisma/client'
   - '@prisma/engines'
   - '@swc/core'
+  - '@tailwindcss/oxide'
   - esbuild
   - prisma

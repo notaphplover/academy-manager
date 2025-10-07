@@ -26,6 +26,9 @@ const defaultWorkspaceProjectConfig: WorkspaceProjectConfig & {
 };
 
 export default {
+  compilers: {
+    css: (text: string) => [...text.matchAll(/(?<=@)import[^;]+/g)].join("\n"),
+  },
   commitlint: {
     config: "config/commitlint/commitlint.config.js",
   },
@@ -65,6 +68,34 @@ export default {
       entry: ["{cjs,esm}/index.{js,d.ts}"],
       ignoreDependencies: defaultWorkspaceProjectConfig.ignoreDependencies,
       project: defaultWorkspaceProjectConfig.project,
+    },
+    "packages/frontend/services/ui": {
+      ...defaultWorkspaceProjectConfig,
+      entry: [...defaultWorkspaceProjectConfig.entry, "src/components/ui/*"],
+      next: {
+        config: ["next.config.{js,ts,cjs,mjs}"],
+        entry: [
+          "{instrumentation,instrumentation-client,middleware}.{js,ts}",
+          "app/global-error.{js,jsx,ts,tsx}",
+          "app/**/{error,layout,loading,not-found,page,template,default}.{js,jsx,ts,tsx}",
+          "app/**/route.{js,jsx,ts,tsx}",
+          "app/{manifest,sitemap,robots}.{js,ts}",
+          "app/**/{icon,apple-icon}.{js,jsx,ts,tsx}",
+          "app/**/{opengraph,twitter}-image.{js,jsx,ts,tsx}",
+          "mdx-components.{js,jsx,ts,tsx}",
+          "pages/**/*.{js,jsx,ts,tsx}",
+          "src/{instrumentation,instrumentation-client,middleware}.{js,ts}",
+          "src/app/global-error.{js,jsx,ts,tsx}",
+          "src/app/**/{error,layout,loading,not-found,page,template,default}.{js,jsx,ts,tsx}",
+          "src/app/**/route.{js,jsx,ts,tsx}",
+          "src/app/{manifest,sitemap,robots}.{js,ts}",
+          "src/app/globals.css",
+          "src/app/**/{icon,apple-icon}.{js,jsx,ts,tsx}",
+          "src/app/**/{opengraph,twitter}-image.{js,jsx,ts,tsx}",
+          "src/mdx-components.{js,jsx,ts,tsx}",
+          "src/pages/**/*.{js,jsx,ts,tsx}",
+        ],
+      },
     },
   },
 } satisfies KnipConfig;

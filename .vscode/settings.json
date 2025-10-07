@@ -1,5 +1,6 @@
 {
   "eslint.workingDirectories": [
+    { "pattern": "./packages/frontend/services/*", "!cwd": false },
     { "pattern": "./packages/backend/apps/auth/*", "!cwd": false },
     { "pattern": "./packages/backend/apps/mail/*", "!cwd": false },
     { "pattern": "./packages/backend/libraries/*", "!cwd": false },

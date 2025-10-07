@@ -4,6 +4,7 @@ import process from 'node:process';
 
 import { defineConfig, globalIgnores } from '@eslint/config-helpers';
 import eslint from '@eslint/js';
+import next from '@next/eslint-plugin-next';
 import vitest from '@vitest/eslint-plugin';
 import tseslint from 'typescript-eslint';
 import eslintPrettierConfig from 'eslint-plugin-prettier/recommended';
@@ -163,6 +164,152 @@ function buildBaseConfig() {
 }
 
 /**
+ * @returns {import('@eslint/config-helpers').ConfigWithExtends}
+ */
+function buildFrontendBaseConfig() {
+  return {
+    extends: [
+      eslint.configs.recommended,
+      ...tseslint.configs.strictTypeChecked,
+    ],
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: {
+        project: './tsconfig.json',
+        tsconfigRootDir: process.cwd(),
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tseslint.plugin,
+      'simple-import-sort': simpleImportSort,
+    },
+    rules: {
+      '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+      '@typescript-eslint/explicit-member-accessibility': [
+        'error',
+        {
+          overrides: {
+            constructors: 'no-public',
+          },
+        },
+      ],
+      '@typescript-eslint/member-ordering': ['warn'],
+      '@typescript-eslint/naming-convention': [
+        'error',
+        {
+          selector: ['classProperty'],
+          format: ['snake_case', 'strictCamelCase', 'UPPER_CASE'],
+          leadingUnderscore: 'allow',
+        },
+        {
+          selector: 'typeParameter',
+          format: ['StrictPascalCase'],
+          prefix: ['T'],
+        },
+        {
+          selector: ['typeLike'],
+          format: ['StrictPascalCase'],
+        },
+        {
+          selector: ['function', 'classMethod'],
+          format: ['strictCamelCase', 'StrictPascalCase'],
+          leadingUnderscore: 'allow',
+        },
+        {
+          selector: ['parameter'],
+          format: ['strictCamelCase'],
+          leadingUnderscore: 'allow',
+        },
+        {
+          selector: ['variableLike'],
+          format: [
+            'snake_case',
+            'strictCamelCase',
+            'StrictPascalCase',
+            'UPPER_CASE',
+          ],
+        },
+      ],
+      '@typescript-eslint/no-deprecated': 'error',
+      '@typescript-eslint/no-duplicate-type-constituents': 'off',
+      '@typescript-eslint/no-dynamic-delete': 'error',
+      '@typescript-eslint/no-extraneous-class': 'off',
+      '@typescript-eslint/no-inferrable-types': 'off',
+      '@typescript-eslint/no-empty-interface': 'warn',
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-floating-promises': ['error'],
+      'no-magic-numbers': 'off',
+      '@typescript-eslint/no-magic-numbers': [
+        'warn',
+        {
+          ignore: [-1, 0, 1],
+          ignoreArrayIndexes: true,
+          ignoreEnums: true,
+          ignoreReadonlyClassProperties: true,
+        },
+      ],
+      '@typescript-eslint/no-require-imports': 'error',
+      '@typescript-eslint/no-unnecessary-type-arguments': 'off',
+      '@typescript-eslint/no-unused-expressions': ['error'],
+      '@typescript-eslint/no-useless-constructor': 'error',
+      '@typescript-eslint/prefer-for-of': 'error',
+      '@typescript-eslint/prefer-nullish-coalescing': ['off'],
+      '@typescript-eslint/prefer-optional-chain': 'off',
+      '@typescript-eslint/prefer-readonly': ['warn'],
+      '@typescript-eslint/promise-function-async': ['error'],
+      '@typescript-eslint/require-await': 'off',
+      '@typescript-eslint/restrict-plus-operands': [
+        'error',
+        {
+          skipCompoundAssignments: false,
+        },
+      ],
+      '@typescript-eslint/unified-signatures': 'error',
+      '@typescript-eslint/strict-boolean-expressions': 'error',
+      '@typescript-eslint/switch-exhaustiveness-check': [
+        'error',
+        {
+          considerDefaultExhaustiveForUnions: true,
+        },
+      ],
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          args: 'all',
+          argsIgnorePattern: '^_',
+          caughtErrors: 'all',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [
+            ['vitest'],
+            ['^\\u0000'],
+            ['^node:'],
+            ['^@?\\w'],
+            ['^'],
+            ['^\\.'],
+          ],
+        },
+      ],
+      'sort-keys': [
+        'error',
+        'asc',
+        {
+          caseSensitive: false,
+          natural: true,
+        },
+      ],
+    },
+  };
+}
+
+/**
  * Builds the default ESLint configuration.
  * @param {string[]} ignorePatterns - An array of glob patterns to ignore.
  */
@@ -186,6 +333,92 @@ export function buildDefaultConfig(ignorePatterns = []) {
       files: ['**/*.spec.{cjs,mts,ts,tsx}'],
       plugins: {
         ...(baseRules.plugins ?? {}),
+      },
+      rules: {
+        ...(baseRules.rules ?? {}),
+        '@typescript-eslint/no-confusing-void-expression': 'off',
+        '@typescript-eslint/unbound-method': 'off',
+        '@typescript-eslint/no-magic-numbers': 'off',
+      },
+    },
+    {
+      files: ['**/*.spec.ts', '**/*.spec-d.ts'],
+      plugins: {
+        vitest: vitestPlugin,
+      },
+      rules: {
+        ...vitest.configs.recommended.rules,
+        ...vitest.configs.all.rules,
+        '@typescript-eslint/unbound-method': 'off',
+        '@typescript-eslint/no-confusing-void-expression': 'off',
+        '@typescript-eslint/no-magic-numbers': 'off',
+        '@typescript-eslint/no-unsafe-assignment': 'off',
+        'vitest/consistent-test-filename': 'off',
+        'vitest/consistent-vitest-vi': [
+          'error',
+          {
+            fn: 'vitest',
+          },
+        ],
+        'vitest/expect-expect': [
+          'error',
+          {
+            assertFunctionNames: ['assertType', 'expect', 'expectTypeOf'],
+          },
+        ],
+        'vitest/max-expects': 'off',
+        'vitest/max-nested-describe': 'off',
+        'vitest/no-hooks': 'off',
+        'vitest/no-importing-vitest-globals': 'off',
+        'vitest/prefer-expect-assertions': 'off',
+        'vitest/prefer-strict-equal': 'error',
+        'vitest/valid-title': 'off',
+        'vitest/prefer-lowercase-title': 'off',
+        'vitest/prefer-to-be-falsy': 'off',
+        'vitest/prefer-to-be-truthy': 'off',
+      },
+    },
+    /** @type {import('@eslint/config-helpers').ConfigWithExtends} */ (
+      eslintPrettierConfig
+    ),
+  ];
+
+  if (ignorePatterns.length > 0) {
+    configPatterns.push(globalIgnores(ignorePatterns));
+  }
+
+  return defineConfig(...configPatterns);
+}
+
+/**
+ * Builds the default ESLint configuration.
+ * @param {string[]} ignorePatterns - An array of glob patterns to ignore.
+ */
+export function buildDefaultFrontendConfig(ignorePatterns = []) {
+  const baseRules = buildFrontendBaseConfig();
+
+  const nextPlugin = /** @type {import('@eslint/config-helpers').Plugin} */ (
+    /** @type {unknown} */ (next)
+  );
+
+  const vitestPlugin = /** @type {import('@eslint/config-helpers').Plugin} */ (
+    /** @type {unknown} */ (vitest)
+  );
+
+  /** @type {import('@eslint/config-helpers').ConfigWithExtends[]} */
+  const configPatterns = [
+    {
+      ...baseRules,
+      files: ['**/*.{cjs,mts,ts,tsx}'],
+      ignores: ['**/*.spec.{cjs,mts,ts,tsx}', 'src/components/ui/**'],
+    },
+    {
+      ...baseRules,
+      extends: [...(baseRules.extends ?? [])],
+      files: ['**/*.spec.{cjs,mts,ts,tsx}'],
+      plugins: {
+        ...(baseRules.plugins ?? {}),
+        next: nextPlugin,
       },
       rules: {
         ...(baseRules.rules ?? {}),
