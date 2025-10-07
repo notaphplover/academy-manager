@@ -18,6 +18,8 @@ import {
 import { Input } from '@/components/ui/input';
 import { betterAuthClient } from '@/lib/auth-client';
 
+import { PasswordInput } from '../ui/password-input';
+
 const PASSWORD_MIN_LENGTH = 8;
 
 const schema = z.object({
@@ -83,11 +85,10 @@ export function SignInForm() {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input
-                  data-testid="signin-password-input"
-                  type="password"
-                  placeholder="Password"
+                <PasswordInput
                   {...field}
+                  data-testid="signin-password-input"
+                  placeholder="Password"
                 />
               </FormControl>
               <FormMessage />
