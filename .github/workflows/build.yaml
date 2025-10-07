@@ -25,6 +25,18 @@ jobs:
 
       - uses: ./.github/actions/setup
 
+      - name: Create .env files from .env.example
+        run: |
+          find packages -name "*.env.example" -type f | while read -r file; do
+            env_file="${file%.example}"
+            if [ ! -f "$env_file" ]; then
+              echo "Creating $env_file from $file"
+              cp "$file" "$env_file"
+            else
+              echo "Skipping $env_file (already exists)"
+            fi
+          done
+
       - name: Get build affected packages
         id: get-build-affected-packages
         run: echo "packages=$(pnpm exec foundation-get-affected-projects build origin/${{github.base_ref}})" >> $GITHUB_OUTPUT
