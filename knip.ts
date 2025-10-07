@@ -72,6 +72,11 @@ export default {
     "packages/frontend/services/ui": {
       ...defaultWorkspaceProjectConfig,
       entry: [...defaultWorkspaceProjectConfig.entry, "src/components/ui/*"],
+      ignoreDependencies: [
+        ...defaultWorkspaceProjectConfig.ignoreDependencies,
+        "@emotion/react",
+        "@emotion/styled",
+      ],
       next: {
         config: ["next.config.{js,ts,cjs,mjs}"],
         entry: [
