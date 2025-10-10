@@ -7,7 +7,7 @@
   "dependencies": {
     "@academyjs/backend-common": "workspace:^",
     "@academyjs/backend-db": "workspace:^",
-    "@prisma/client": "6.17.0"
+    "@prisma/client": "6.17.1"
   },
   "devDependencies": {
     "@academyjs/backend-auth-application": "workspace:^",
@@ -20,7 +20,7 @@
     "dotenv": "17.2.3",
     "eslint": "9.37.0",
     "prettier": "3.6.2",
-    "prisma": "6.17.0",
+    "prisma": "6.17.1",
     "rimraf": "6.0.1",
     "tslib": "2.8.1",
     "typescript": "5.9.3",
