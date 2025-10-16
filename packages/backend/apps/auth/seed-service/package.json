@@ -11,8 +11,8 @@
     "@academyjs/backend-auth-application": "workspace:*",
     "@academyjs/backend-auth-env": "workspace:*",
     "@academyjs/mail-nodemailer": "workspace:*",
-    "@inversifyjs/http-better-auth": "^3.1.0",
-    "inversify": "^7.10.2"
+    "@inversifyjs/http-better-auth": "^3.2.0",
+    "inversify": "^7.10.3"
   },
   "devDependencies": {
     "@stryker-mutator/core": "9.2.0",

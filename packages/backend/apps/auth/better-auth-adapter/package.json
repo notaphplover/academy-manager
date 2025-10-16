@@ -12,7 +12,7 @@
     "@academyjs/backend-auth-env": "workspace:*",
     "@academyjs/backend-common": "workspace:*",
     "@inversifyjs/logger": "^1.1.0",
-    "inversify": "^7.10.2"
+    "inversify": "^7.10.3"
   },
   "devDependencies": {
     "@types/node": "22.18.10",

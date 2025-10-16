@@ -7,7 +7,7 @@
   "dependencies": {
     "@academyjs/backend-common": "workspace:*",
     "@academyjs/backend-application-mail": "workspace:*",
-    "inversify": "^7.10.2",
+    "inversify": "^7.10.3",
     "nodemailer": "^7.0.9"
   },
   "devDependencies": {
