@@ -17,14 +17,14 @@
     "@academyjs/foundation-typescript-config": "workspace:*",
     "@academyjs/foundation-vitest-config": "workspace:*",
     "husky": "9.1.7",
-    "knip": "5.66.0",
-    "lint-staged": "16.2.4",
+    "knip": "5.66.2",
+    "lint-staged": "16.2.6",
     "turbo": "2.5.8"
   },
   "keywords": [],
   "license": "MIT",
   "name": "root",
-  "packageManager": "pnpm@10.18.3",
+  "packageManager": "pnpm@10.19.0",
   "private": true,
   "repository": {
     "type": "git",
