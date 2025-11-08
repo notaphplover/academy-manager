@@ -15,8 +15,8 @@ vitest.mock('better-auth/adapters/prisma');
 import { PrismaClient } from '@academyjs/auth-prisma';
 import { MailDeliveryOutputPort } from '@academyjs/backend-application-mail';
 import { FindManyUsersOutputPort } from '@academyjs/backend-auth-application';
-import { Adapter, BetterAuthOptions } from 'better-auth';
-import { prismaAdapter } from 'better-auth/adapters/prisma';
+import { BetterAuthOptions } from 'better-auth';
+import { DBAdapter, prismaAdapter } from 'better-auth/adapters/prisma';
 import {
   admin,
   emailOTP,
@@ -57,7 +57,7 @@ describe(BetterAuthOptionsFromEnvBuilder, () => {
 
   describe('.build', () => {
     describe('when called', () => {
-      let prismaAdapterResult: (options: BetterAuthOptions) => Adapter;
+      let prismaAdapterResult: (options: BetterAuthOptions) => DBAdapter;
       let adminResult: ReturnType<typeof admin>;
       let emailOtpResult: ReturnType<typeof emailOTP>;
       let organizationResult: ReturnType<typeof organization>;
@@ -69,7 +69,7 @@ describe(BetterAuthOptionsFromEnvBuilder, () => {
       beforeAll(() => {
         prismaAdapterResult = Symbol() as unknown as (
           options: BetterAuthOptions,
-        ) => Adapter;
+        ) => DBAdapter;
         adminResult = Symbol() as unknown as ReturnType<typeof admin>;
         emailOtpResult = Symbol() as unknown as ReturnType<typeof emailOTP>;
         organizationResult = Symbol() as unknown as ReturnType<
