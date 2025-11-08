@@ -1,4 +1,5 @@
-import { Adapter, BetterAuthOptions, Logger } from 'better-auth';
+import { BetterAuthOptions, Logger } from 'better-auth';
+import { DBAdapter } from 'better-auth/adapters';
 import {
   admin,
   emailOTP,
@@ -8,7 +9,7 @@ import {
 } from 'better-auth/plugins';
 
 export interface AppBetterAuthOptions {
-  database: (options: BetterAuthOptions) => Adapter;
+  database: (options: BetterAuthOptions) => DBAdapter;
   emailAndPassword: {
     enabled: true;
   };

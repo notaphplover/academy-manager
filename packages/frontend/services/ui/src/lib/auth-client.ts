@@ -1,4 +1,4 @@
-import type { ClientOptions, InferClientAPI } from 'better-auth';
+import type { BetterAuthClientOptions, InferClientAPI } from 'better-auth';
 import {
   adminClient,
   emailOTPClient,
@@ -40,7 +40,7 @@ const options: AppBetterAuthOptions = {
   basePath: process.env['NEXT_PUBLIC_BACKEND_BASE_PATH'],
   baseURL: process.env['NEXT_PUBLIC_BACKEND_BASE_URL'],
   plugins: optionsPlugins,
-} satisfies ClientOptions;
+} satisfies BetterAuthClientOptions;
 
 export const betterAuthClient: InferClientAPI<AppBetterAuthOptions> =
   createAuthClient(options);
