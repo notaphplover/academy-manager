@@ -78,5 +78,5 @@ export const betterAuthClient = createAuthClient({
   ],
 });
 
-export type BetterAuthSession = typeof betterAuthClient.$Infer.Session;
+// export type BetterAuthSession = typeof betterAuthClient.$Infer.Session;
 export type BetterAuthOrg = typeof betterAuthClient.$Infer.Organization;
