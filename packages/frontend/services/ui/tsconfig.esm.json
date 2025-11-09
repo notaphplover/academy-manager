@@ -4,6 +4,8 @@
   "compilerOptions": {
     "allowJs": true,
     "baseUrl": "src/",
+    "declaration": false,
+    "declarationMap": false,
     "incremental": true,
     "lib": ["DOM", "ES2022"],
     "jsx": "preserve",
@@ -18,14 +20,10 @@
       }
     ],
     "resolveJsonModule": true,
+    "sourceMap": false,
     "tsBuildInfoFile": "tsconfig.esm.tsbuildinfo",
     "verbatimModuleSyntax": true
   },
-  "include": [
-    "src",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

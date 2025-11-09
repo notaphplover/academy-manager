@@ -8,7 +8,7 @@ import {
   twoFactor,
 } from 'better-auth/plugins';
 
-export interface AppBetterAuthOptions {
+export interface AppBetterAuthOptions extends BetterAuthOptions {
   database: (options: BetterAuthOptions) => DBAdapter;
   emailAndPassword: {
     enabled: true;
