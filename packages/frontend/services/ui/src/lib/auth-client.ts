@@ -1,10 +1,18 @@
-import type { BetterAuthClientOptions, InferClientAPI } from 'better-auth';
+import type { BetterAuthClientPlugin } from 'better-auth';
 import {
   adminClient,
   emailOTPClient,
   organizationClient,
   twoFactorClient,
 } from 'better-auth/client/plugins';
+import {
+  admin,
+  type AdminOptions,
+  emailOTP,
+  organization,
+  type OrganizationOptions,
+  twoFactor,
+} from 'better-auth/plugins';
 import { createAuthClient } from 'better-auth/react';
 
 if (
@@ -16,31 +24,59 @@ if (
   );
 }
 
-export interface AppBetterAuthOptions {
-  basePath: string;
-  baseURL: string;
-  plugins: AppBetterAuthOptionsPlugins;
-}
+type AdminReturnType = ReturnType<typeof admin<AdminOptions>>;
 
-type AppBetterAuthOptionsPlugins = [
-  ReturnType<typeof adminClient>,
+type AdminClientReturnType = Omit<
+  ReturnType<typeof adminClient<object>>,
+  '$InferServerPlugin'
+> & {
+  $InferServerPlugin: AdminReturnType;
+} & BetterAuthClientPlugin;
+
+type EmailOtpReturnType = ReturnType<typeof emailOTP>;
+
+type EmailOtpClientReturnType = Omit<
   ReturnType<typeof emailOTPClient>,
-  ReturnType<typeof organizationClient>,
+  '$InferServerPlugin'
+> & {
+  $InferServerPlugin: EmailOtpReturnType;
+} & BetterAuthClientPlugin;
+
+type OrganizationReturnType = ReturnType<
+  typeof organization<OrganizationOptions>
+>;
+
+type TwoFactorReturnType = ReturnType<typeof twoFactor>;
+
+type TwoFactorClientReturnType = Omit<
   ReturnType<typeof twoFactorClient>,
-];
+  '$InferServerPlugin'
+> & {
+  $InferServerPlugin: TwoFactorReturnType;
+} & BetterAuthClientPlugin;
 
-const optionsPlugins: AppBetterAuthOptionsPlugins = [
-  adminClient(),
-  emailOTPClient(),
-  organizationClient(),
-  twoFactorClient(),
-];
+/*
+ * Hack to get a simple enough type for the organization client plugin.
+ * Otherwise, typescript infers <typeof organizationClient> as any, breaking
+ * client type inference
+ */
+type OrganizationClientReturnType = Omit<
+  ReturnType<typeof organizationClient<object>>,
+  '$InferServerPlugin'
+> & {
+  $InferServerPlugin: OrganizationReturnType;
+};
 
-const options: AppBetterAuthOptions = {
+export const betterAuthClient = createAuthClient({
   basePath: process.env['NEXT_PUBLIC_BACKEND_BASE_PATH'],
   baseURL: process.env['NEXT_PUBLIC_BACKEND_BASE_URL'],
-  plugins: optionsPlugins,
-} satisfies BetterAuthClientOptions;
+  plugins: [
+    adminClient() as AdminClientReturnType,
+    emailOTPClient() as EmailOtpClientReturnType,
+    organizationClient() as OrganizationClientReturnType,
+    twoFactorClient() as TwoFactorClientReturnType,
+  ],
+});
 
-export const betterAuthClient: InferClientAPI<AppBetterAuthOptions> =
-  createAuthClient(options);
+export type BetterAuthSession = typeof betterAuthClient.$Infer.Session;
+export type BetterAuthOrg = typeof betterAuthClient.$Infer.Organization;

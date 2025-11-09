@@ -11,6 +11,11 @@
       "inputs": ["prisma/schema.prisma", "src/**/*.{cts,mts,ts}"],
       "outputs": ["generated/**", "lib/**"]
     },
+    "@academyjs/frontend-ui#build": {
+      "dependsOn": ["^build"],
+      "inputs": ["src/**/*"],
+      "outputs": [".next/**", "next-env.d.ts"]
+    },
     "format": {
       "inputs": ["src/**/*.{cts,mts,ts}"],
       "outputs": ["src/**/*.{cts,mts,ts}"]

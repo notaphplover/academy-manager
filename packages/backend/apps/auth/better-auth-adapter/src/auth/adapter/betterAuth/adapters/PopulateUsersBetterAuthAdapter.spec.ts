@@ -93,8 +93,7 @@ describe(PopulateUsersBetterAuthAdapter, () => {
       });
 
       it('should call this.#betterAuth.api.signUpEmail()', () => {
-        expect(betterAuthMock.api.signUpEmail).toHaveBeenCalledTimes(1);
-        expect(betterAuthMock.api.signUpEmail).toHaveBeenCalledWith({
+        expect(betterAuthMock.api.signUpEmail).toHaveBeenCalledExactlyOnceWith({
           body: {
             email: userFixture.email,
             name: userFixture.name,
