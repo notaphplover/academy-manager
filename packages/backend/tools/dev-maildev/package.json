@@ -5,7 +5,7 @@
   },
   "description": "Dev mail server for auth service",
   "devDependencies": {
-    "prettier": "3.6.2"
+    "prettier": "3.7.4"
   },
   "homepage": "https://github.com/notaphplover/academy-manager#readme",
   "license": "See license in \"LICENSE\" file",
