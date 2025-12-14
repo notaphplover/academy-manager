@@ -5,8 +5,8 @@
   },
   "description": "Backend domain auth package",
   "devDependencies": {
-    "eslint": "9.39.1",
-    "prettier": "3.6.2",
+    "eslint": "9.39.2",
+    "prettier": "3.7.4",
     "rimraf": "6.1.2",
     "rollup": "4.53.3",
     "ts-loader": "9.5.4",
