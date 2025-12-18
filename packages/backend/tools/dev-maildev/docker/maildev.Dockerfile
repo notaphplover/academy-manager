@@ -1,4 +1,4 @@
-FROM node:24.11.1-alpine
+FROM node:24.12.0-alpine
 
 RUN npm i -g maildev@2.2.1
 
